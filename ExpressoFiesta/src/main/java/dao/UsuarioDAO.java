@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Usuario;
+import service.Criptografar;
 
 public class UsuarioDAO extends DAO {
 	public UsuarioDAO(){
@@ -19,11 +20,12 @@ public class UsuarioDAO extends DAO {
 	}
 public boolean insert(Usuario usuario) {
 		
+		usuario.setSenha(Criptografar.criptografar(usuario.getSenha()));
 		boolean status = false;
 		try {
 			String sql = "INSERT INTO usuario (email,login,nome,senha) VALUES ('"+usuario.getEmail()
 			+"', '"+usuario.getLogin()+"','"+usuario.getNome()+"', '"
-			+usuario.getEmail()+"')";
+			+usuario.getSenha()+"')";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
