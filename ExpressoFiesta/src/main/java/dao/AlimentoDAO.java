@@ -25,6 +25,7 @@ public class AlimentoDAO extends DAO {
 		try {
 			String sql = "INSERT INTO alimento (nome,quantidade,valor) VALUES ('"+alimento.getNome()+"', " + alimento.getQuantidade() + ", " + alimento.getValor()+")";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		}catch (SQLException u) {
@@ -40,6 +41,7 @@ public class AlimentoDAO extends DAO {
 					" where id = "+alimento.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.close();
+			st.executeUpdate();
 			status = true;
 			
 		} catch (SQLException u) {

@@ -27,6 +27,7 @@ public class PedidoDAO extends DAO {
 			String sql = "INSERT INTO pedido (data_pedido,total,local_id,usuario_id) VALUES ('"+pedido.getData_pedido()+"',"+pedido.getTotal()+","+
 			pedido.getLocal_id()+","+pedido.getUsuario_id()+")";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		}catch (SQLException u) {
@@ -41,6 +42,7 @@ public class PedidoDAO extends DAO {
 		try {
 			String sql = "DELETE from pedido where id = "+pedido.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		} catch (SQLException u) {
@@ -63,6 +65,7 @@ public class PedidoDAO extends DAO {
 				pedido.setUsuario_id(resultado.getInt("usuario_id"));
 				retorno.add(pedido);
 			}
+			st.executeUpdate();
 			st.close();
 			
 		} catch (Exception e) {

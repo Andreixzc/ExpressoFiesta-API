@@ -25,6 +25,7 @@ public class AtracaoDAO extends DAO {
 		try {
 			String sql = "INSERT INTO atracao (nome,valor) VALUES ('"+atracao.getNome()+"'," + atracao.getValor()+")";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		}catch (SQLException u) {

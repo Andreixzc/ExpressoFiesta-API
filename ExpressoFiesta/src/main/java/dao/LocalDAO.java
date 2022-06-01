@@ -26,6 +26,7 @@ public class LocalDAO extends DAO {
 			+"', '"+local.getNome()+"','"+local.getStatus()+"', "
 			+local.getValor()+")";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		}catch (SQLException u) {
@@ -41,6 +42,7 @@ public class LocalDAO extends DAO {
 			String sql = "UPDATE local set endereco = '"+local.getEndereco()+"',nome = '"+local.getNome()+"', status = '"+local.getStatus()+"',valor = "+local.getValor()+
 					" where id = "+local.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 			
@@ -56,6 +58,7 @@ public class LocalDAO extends DAO {
 		try {
 			String sql = "DELETE from local where id = "+local.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		} catch (SQLException u) {
