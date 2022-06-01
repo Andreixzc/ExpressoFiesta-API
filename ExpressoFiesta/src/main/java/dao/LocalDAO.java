@@ -52,11 +52,11 @@ public class LocalDAO extends DAO {
 		return status;
 	}
 	
-	public boolean delete(Local local) {
+	public boolean delete(int id) {
 		boolean status = false;
 		
 		try {
-			String sql = "DELETE from local where id = "+local.getId();
+			String sql = "DELETE from local where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -96,11 +96,13 @@ public class LocalDAO extends DAO {
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
+			while (resultado.next()) {
 			local.setId(resultado.getInt("id"));
 			local.setEndereco(resultado.getString("endereco"));
 			local.setNome(resultado.getString("nome"));
 			local.setStatus(resultado.getString("status"));
 			local.setValor(resultado.getFloat("valor"));
+			}
 			return local;
 			
 		} catch (SQLException u) {

@@ -80,11 +80,13 @@ public class PedidoDAO extends DAO {
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
+			while (resultado.next()) {
 			pedido.setId(resultado.getInt("id"));
 			pedido.setData_pedido(resultado.getDate("data_pedido"));
 			pedido.setTotal(resultado.getInt("total"));
 			pedido.setLocal_id(resultado.getInt("local_id"));
 			pedido.setUsuario_id(resultado.getInt("usuario_id"));
+			}
 			return pedido;
 			
 		} catch (SQLException u) {

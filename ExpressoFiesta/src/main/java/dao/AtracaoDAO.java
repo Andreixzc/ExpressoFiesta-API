@@ -49,11 +49,11 @@ public class AtracaoDAO extends DAO {
 		return status;
 	}
 	
-	public boolean delete(Atracao atracao) {
+	public boolean delete(int id) {
 		boolean status = false;
 		
 		try {
-			String sql = "DELETE from atracao where id = "+atracao.getId();
+			String sql = "DELETE from atracao where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.close();
 			status = true;
@@ -91,9 +91,12 @@ public class AtracaoDAO extends DAO {
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
+			
+			while (resultado.next()) {
 			atracao.setId(resultado.getInt("id"));
 			atracao.setNome(resultado.getString("nome"));
 			atracao.setValor(resultado.getFloat("valor"));
+			}
 			return atracao;
 			
 		} catch (SQLException u) {

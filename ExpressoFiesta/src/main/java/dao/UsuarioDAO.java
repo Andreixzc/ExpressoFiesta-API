@@ -59,11 +59,11 @@ public boolean update(Usuario usuario) {
 	
 	
 	
-	public boolean delete(Usuario usuario) {
+	public boolean delete(int id) {
 		boolean status = false;
 		
 		try {
-			String sql = "DELETE from local where id = "+usuario.getId();
+			String sql = "DELETE from local where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -103,11 +103,13 @@ public boolean update(Usuario usuario) {
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
+			while (resultado.next()) {
 			usuario.setId(resultado.getInt("id"));
 			usuario.setEmail(resultado.getString("email"));
 			usuario.setLogin(resultado.getString("login"));
 			usuario.setNome(resultado.getString("nome"));
 			usuario.setSenha(resultado.getString("senha"));
+			}
 			return usuario;
 			
 		} catch (SQLException u) {

@@ -31,6 +31,4 @@ public class Pedido_alimentoDAO extends DAO {
 		return status;
 	}
 	
-	
-
 }

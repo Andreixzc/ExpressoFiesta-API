@@ -40,22 +40,23 @@ public class AlimentoDAO extends DAO {
 			String sql = "UPDATE alimento set nome = '"+alimento.getNome()+"',quantidade = "+alimento.getQuantidade()+",valor = "+alimento.getValor()+
 					" where id = "+alimento.getId();
 			PreparedStatement st = conexao.prepareStatement(sql);
-			st.close();
 			st.executeUpdate();
+			st.close();
 			status = true;
-			
+
 		} catch (SQLException u) {
 			throw new RuntimeException(u);
 		}
 		return status;
 	}
 	
-	public boolean delete(Alimento alimento) {
+	public boolean delete(int id) {
 		boolean status = false;
 		
 		try {
-			String sql = "DELETE from alimento where id = "+alimento.getId();
+			String sql = "DELETE from alimento where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		} catch (SQLException u) {
@@ -93,19 +94,17 @@ public class AlimentoDAO extends DAO {
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
-			alimento.setId(resultado.getInt("id"));
-			alimento.setNome(resultado.getString("nome"));
-			alimento.setQuantidade(resultado.getInt("quantidade"));
-			alimento.setValor(resultado.getFloat("valor"));
-			return alimento;
+
+			while (resultado.next()) {
+				alimento.setId(resultado.getInt("id"));
+				alimento.setNome(resultado.getString("nome"));
+				alimento.setQuantidade(resultado.getInt("quantidade"));
+				alimento.setValor(resultado.getFloat("valor"));
+			}
 			
+			return alimento;
 		} catch (SQLException u) {
 			throw new RuntimeException();
 		}
 	}
-	
-	
-	
-	
-	
 }
