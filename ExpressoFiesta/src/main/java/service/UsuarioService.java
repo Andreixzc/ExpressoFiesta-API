@@ -1,6 +1,12 @@
 package service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import dao.UsuarioDAO;
 import model.Usuario;
@@ -35,15 +41,11 @@ public class UsuarioService {
 		setReponseHeaders(response);
 		return usuarioDAO.listar();
 	}
-	
-	public Usuario insert(Request request, Response response) {
+	public Usuario insert(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
-		String email = request.queryParams("email");
-		String login = request.queryParams("login");
-		String nome = request.queryParams("nome");
-		String senha = request.queryParams("senha");
-		Usuario usuario = new Usuario(-1, email, login, nome, senha);
-		
+		String body = request.body();
+		ObjectMapper mapper = new ObjectMapper();
+		Usuario usuario = mapper.readValue(body, Usuario.class);
 		if (usuarioDAO.insert(usuario)) {
 			response.status(200);
 			return usuario;
@@ -52,6 +54,8 @@ public class UsuarioService {
 			return null;
 		}	
 	}
+	
+	
 	
 	public Usuario update(Request request, Response response) {
 		setReponseHeaders(response);

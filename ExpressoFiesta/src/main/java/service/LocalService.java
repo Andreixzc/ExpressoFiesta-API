@@ -57,6 +57,23 @@ public class LocalService {
 		}
 	}
 	
+	public Local update(Request request, Response response) {
+		setReponseHeaders(response);
+		Local local = buscarPorId(request);
+		if (local != null) {
+			local.setEndereco(request.queryParams("endereco"));
+			local.setNome(request.queryParams("nome"));
+			local.setStatus(request.queryParams("status"));
+			local.setValor(Float.parseFloat(request.queryParams("valor")));
+			response.status(200);
+			return local;
+		}else {
+			response.status(404);
+			return null;
+		}
+		
+	}
+	
 	public String delete(Request request, Response response) {
 		Local local = buscarPorId(request);
 		

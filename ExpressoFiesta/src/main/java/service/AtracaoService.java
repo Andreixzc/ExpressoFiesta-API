@@ -1,8 +1,14 @@
 package service;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
 import dao.AtracaoDAO;
+import model.Alimento;
 import model.Atracao;
 import spark.Request;
 import spark.Response;
@@ -40,13 +46,15 @@ public class AtracaoService {
 		return atracaoDAO.listar();
 	}
 	
-	public Atracao insert(Request request, Response response) {
+	public Atracao insert(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
 
-		String nome = request.queryParams("nome");;
-		float valor = Float.parseFloat(request.queryParams("valor"));
-
-		Atracao atracao = new Atracao(-1, nome,valor);
+//		String nome = request.queryParams("nome");;
+//		float valor = Float.parseFloat(request.queryParams("valor"));
+//		Atracao atracao = new Atracao(-1, nome,valor);
+		String body = request.body();
+		ObjectMapper mapper = new ObjectMapper();
+		Atracao atracao = mapper.readValue(body, Atracao.class);
 
 		if (atracaoDAO.insert(atracao)) {
 			response.status(201);
@@ -57,15 +65,20 @@ public class AtracaoService {
 		}
 	}
 	
-	public Atracao update(Request request, Response response) {
+	public Atracao update(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
 		Atracao atracao = buscarPorId(request);
 
 		if (atracao != null) {
-			atracao.setNome(request.queryParams("nome"));
-			atracao.setValor(Float.parseFloat(request.queryParams("valor")));
+//			atracao.setNome(request.queryParams("nome"));
+//			atracao.setValor(Float.parseFloat(request.queryParams("valor")));
+			String body = request.body();
+			ObjectMapper mapper = new ObjectMapper();
+			Atracao atracao2 = mapper.readValue(body, Atracao.class);
+			
 			atracaoDAO.update(atracao);
 			response.status(200);
+			
 			return atracao;
 		} else {
 			response.status(404);

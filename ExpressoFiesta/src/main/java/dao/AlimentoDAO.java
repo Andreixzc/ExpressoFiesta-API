@@ -28,7 +28,7 @@ public class AlimentoDAO extends DAO {
 			st.executeUpdate();
 			st.close();
 			status = true;
-		}catch (SQLException u) {
+		} catch (SQLException u) {
 			throw new RuntimeException(u);
 		}
 		return status;

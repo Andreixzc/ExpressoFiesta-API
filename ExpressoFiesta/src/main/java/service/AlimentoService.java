@@ -1,9 +1,15 @@
 package service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import dao.AlimentoDAO;
 import model.Alimento;
+import model.Usuario;
 import spark.Request;
 import spark.Response;
 
@@ -39,14 +45,16 @@ public class AlimentoService {
 		return alimentoDAO.listar();
 	}
 
-	public Alimento insert(Request request, Response response) {
+	public Alimento insert(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
 
-		String nome = request.queryParams("nome");
-		int quantidade = Integer.parseInt(request.queryParams("quantidade"));
-		float valor = Float.parseFloat(request.queryParams("valor"));
-
-		Alimento alimento = new Alimento(-1, nome, quantidade, valor);
+//		String nome = request.queryParams("nome");
+//		int quantidade = Integer.parseInt(request.queryParams("quantidade"));
+//		float valor = Float.parseFloat(request.queryParams("valor"));
+//		Alimento alimento = new Alimento(-1, nome, quantidade, valor);
+		String body = request.body();
+		ObjectMapper mapper = new ObjectMapper();
+		Alimento alimento = mapper.readValue(body, Alimento.class);
 
 		if (alimentoDAO.insert(alimento)) {
 			response.status(201); // 201 Created
@@ -57,15 +65,18 @@ public class AlimentoService {
 		}
 	}
 
-	public Alimento update(Request request, Response response) {
+	public Alimento update(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
 		Alimento alimento = buscarPorId(request);
 
 		if (alimento != null) {
-			alimento.setNome(request.queryParams("nome"));
-			alimento.setValor(Float.parseFloat(request.queryParams("valor")));
-			alimento.setQuantidade(Integer.parseInt(request.queryParams("quantidade")));
-			alimentoDAO.update(alimento);
+//			alimento.setNome(request.queryParams("nome"));
+//			alimento.setValor(Float.parseFloat(request.queryParams("valor")));
+//			alimento.setQuantidade(Integer.parseInt(request.queryParams("quantidade")));
+			String body = request.body();
+			ObjectMapper mapper = new ObjectMapper();
+			Alimento alimento2 = mapper.readValue(body, Alimento.class);
+			alimentoDAO.update(alimento2);
 			response.status(200); // success
 			return alimento;
 		} else {
