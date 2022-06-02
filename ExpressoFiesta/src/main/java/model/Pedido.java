@@ -28,9 +28,7 @@ public class Pedido {
 	public void setAlimentosQuantidade(List<AlimentoQuantidade> alimentosQuantidade) {
 		this.alimentosQuantidade = alimentosQuantidade;
 	}
-	public Pedido() {
-		
-	}
+	public Pedido() {}
 	public int getId() {
 		return id;
 	}

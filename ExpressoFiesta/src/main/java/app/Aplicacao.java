@@ -87,14 +87,5 @@ public class Aplicacao {
 	   post("/usuario/update/:id", (request, response) -> usuarioService.update(request, response));
 
 	   delete("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
-	   
-	   Usuario usuario = new Usuario(-1, "teste", "testelogin", "testnome", "senha");
-	   
-	   
-	   
-	
-	   
-
-
     }
 }

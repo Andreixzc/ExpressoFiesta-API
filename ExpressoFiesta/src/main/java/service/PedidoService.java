@@ -62,31 +62,39 @@ public class PedidoService {
 		///////////////////////////////////////////////////////
 		String atracoes = request.queryParams("atracoes_id");
 		String alimentos = request.queryParams("alimentos_id");
-		String vetAlimentos[] = alimentos.split(" ");
-		String vetAtracoes[] = atracoes.split(" ");
+		
+		String vetAlimentos[] = alimentos.split(",");
+		String vetAtracoes[] = atracoes.split(",");
+		
 		int[] vetAlimentoParser = new int[vetAlimentos.length];
 		int[] vetparser = new int[vetAtracoes.length];
-		Pedido pedido = new Pedido(-1, dataFinal, total, local_id, usuario_id);	
+		Pedido pedido = new Pedido(-1, dataFinal, total, local_id, usuario_id);
 		
 		for (int i = 0; i < vetAlimentoParser.length; i++) {
-			vetAlimentoParser[i] = Integer.parseInt(vetAlimentos[i]);
+			vetAlimentoParser[i] = Integer.parseInt(vetAlimentos[i]);//id dos alimentos
 		}
-		for (int i = 0; i < vetparser.length; i++) {
+		int j = 1;
+		for (int i = 0; i < vetAlimentoParser.length; i = i+2) {
+			
 			AlimentoDAO alimentoDAO = new AlimentoDAO();
-			Alimento alimento = alimentoDAO.buscar(vetAlimentoParser[i]);
-//			pedido.getAlimentosQuantidade().add(alimento.getId());//porque quantidade
+			Alimento alimento = alimentoDAO.buscar(vetAlimentoParser[i]);//Pega o objeto alimento do id pegado no parametro
+			int qnt = vetAlimentoParser[j];//Pega quantidade dos indices impares
+			AlimentoQuantidade alimentoQuantidade = new AlimentoQuantidade(alimento, qnt);//instancia o objeto passando pro construtor o objeto e a quantidade
+			pedido.getAlimentosQuantidade().add(alimentoQuantidade);
+			j = j +2;	
 		}
+		
+		
 		
 		for (int i = 0; i < vetAtracoes.length; i++) {
-			vetparser[i] = Integer.parseInt(vetAtracoes[i]);
+			vetparser[i] = Integer.parseInt(vetAtracoes[i]);//converte a string do parametro em um array de int referente ao id das atracoes
 		}
-		
 		
 		for (int i = 0; i < vetparser.length; i++) {
 			AtracaoDAO atracaoDAO = new AtracaoDAO();
 			Atracao atracao = atracaoDAO.buscar(vetparser[i]);
-			pedido.getAtracoes().add(atracao);	
-		}		
+			pedido.getAtracoes().add(atracao);	//Instancia e adiciona as atracoes ao pedido percorrendo o array;
+		}
 		////////////////////////////////////////////////////////////////
 		if (pedidoDAO.insert(pedido)) {
 			response.status(201);
