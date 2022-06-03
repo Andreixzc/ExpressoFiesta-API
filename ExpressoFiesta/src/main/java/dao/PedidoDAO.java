@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Alimento;
+
+
 import model.AlimentoQuantidade;
 
 
@@ -15,6 +18,18 @@ import model.Atracao;
 import model.Pedido;
 
 public class PedidoDAO extends DAO {
+
+    private final String SELECT_QUERY = "SELECT * FROM PEDIDO";
+
+    private final String SELECT_QUERY_ATRACAO = "SELECT ATRACAO.*, PEDIDO_ATRACAO.pedido_id "
+			+ "FROM PEDIDO "
+			+ "INNER JOIN PEDIDO_ATRACAO ON (PEDIDO.ID = PEDIDO_ATRACAO.PEDIDO_ID) "
+			+ "INNER JOIN ATRACAO ON (ATRACAO.ID = PEDIDO_ATRACAO.ATRACAO_ID)";
+
+	private final String SELECT_QUERY_ALIMENTO = "SELECT ALIMENTO.*, PEDIDO_ALIMENTO.pedido_id, PEDIDO_ALIMENTO.quantidade pedido_alimento_quantidade"
+           + " FROM PEDIDO "
+           + " INNER JOIN PEDIDO_ALIMENTO ON (PEDIDO.ID = PEDIDO_ALIMENTO.PEDIDO_ID) "
+           + " INNER JOIN ALIMENTO ON (ALIMENTO.ID = PEDIDO_ALIMENTO.ALIMENTO_ID) " ;
 
 	public PedidoDAO() {
 		super();
@@ -81,47 +96,98 @@ public class PedidoDAO extends DAO {
 	}
 
 	public List<Pedido> listar() {
-		String sql = "SELECT * FROM pedido";
 		List<Pedido> retorno = new ArrayList<>();
 		try {
-			PreparedStatement st = conexao.prepareStatement(sql);
+			PreparedStatement st = conexao.prepareStatement(SELECT_QUERY);
 			ResultSet resultado = st.executeQuery();
 			while (resultado.next()) {
-				Pedido pedido = new Pedido();
-				pedido.setId(resultado.getInt("id"));
-				pedido.setData_pedido(resultado.getDate("data_pedido").toLocalDate());
-				pedido.setTotal(resultado.getFloat("total"));
-				pedido.setLocal_id(resultado.getInt("local_id"));
-				pedido.setUsuario_id(resultado.getInt("usuario_id"));
+				Pedido pedido = criarPedido(resultado);
 				retorno.add(pedido);
 			}
-			st.executeUpdate();
 			st.close();
 
+            PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO);
+            resultado = stAtracao.executeQuery();
+            while (resultado.next()) {
+				Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
+                pedido.getAtracoes().add(criarAtracao(resultado));
+            }
+            stAtracao.close();
+
+            PreparedStatement stAlimento = conexao.prepareStatement(SELECT_QUERY_ALIMENTO);
+            resultado = stAlimento.executeQuery();
+            while (resultado.next()) {
+                Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
+                pedido.getAlimentosQuantidade().add(criarAlimentoQuantidade(resultado));
+            }
+            stAlimento.close();
+
 		} catch (Exception e) {
-			System.out.println("Erro ao listar");
+			System.out.println("Erro ao listar: " + e);
 		}
 		return retorno;
-
 	}
 
 	public Pedido buscar(int id) {
-		Pedido pedido = new Pedido();
-		String sql = "SELECT * FROM pedido where id = " + id;
 		try {
-			PreparedStatement st = conexao.prepareStatement(sql);
+			Pedido pedido = new Pedido();
+			PreparedStatement st = conexao.prepareStatement(SELECT_QUERY + " where PEDIDO.id = " + id);
 			ResultSet resultado = st.executeQuery();
 			while (resultado.next()) {
-				pedido.setId(resultado.getInt("id"));
-				pedido.setData_pedido(resultado.getDate("data_pedido").toLocalDate());
-				pedido.setTotal(resultado.getFloat("total"));
-				pedido.setLocal_id(resultado.getInt("local_id"));
-				pedido.setUsuario_id(resultado.getInt("usuario_id"));
+				pedido = criarPedido(resultado);
 			}
-			return pedido;
+			st.close();
 
+			PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO + " where PEDIDO.id = " + id);
+			resultado = stAtracao.executeQuery();
+			while (resultado.next()) {
+				pedido.getAtracoes().add(criarAtracao(resultado));
+			}
+			stAtracao.close();
+
+			PreparedStatement stAlimento = conexao.prepareStatement(SELECT_QUERY_ALIMENTO + " where PEDIDO.id = " + id);
+            resultado = stAlimento.executeQuery();
+            while (resultado.next()) {
+                pedido.getAlimentosQuantidade().add(criarAlimentoQuantidade(resultado));
+            }
+            stAlimento.close();
+			return pedido;
 		} catch (SQLException u) {
-			throw new RuntimeException();
+			throw new RuntimeException(u);
 		}
 	}
+
+	private Pedido criarPedido(ResultSet resultado) throws SQLException {
+		Pedido pedido = new Pedido();
+		pedido.setId(resultado.getInt("id"));
+        pedido.setData_pedido(resultado.getDate("data_pedido").toLocalDate());
+        pedido.setTotal(resultado.getFloat("total"));
+        pedido.setLocal_id(resultado.getInt("local_id"));
+        pedido.setUsuario_id(resultado.getInt("usuario_id"));
+        return pedido;
+	}
+	
+	private Atracao criarAtracao(ResultSet resultado) throws SQLException {
+		Atracao atracao = new Atracao();
+        atracao.setId(resultado.getInt("id"));
+        atracao.setNome(resultado.getString("nome"));
+        atracao.setValor(resultado.getFloat("valor"));
+        atracao.setUrlImg(resultado.getString("atracao_imagem"));
+        return atracao;
+	}
+
+	private AlimentoQuantidade criarAlimentoQuantidade(ResultSet resultado) throws SQLException {
+        Alimento alimento = new Alimento();
+        alimento.setId(resultado.getInt("id"));
+        alimento.setNome(resultado.getString("nome"));
+        alimento.setValor(resultado.getFloat("valor"));
+        alimento.setQuantidade(resultado.getInt("quantidade"));
+        alimento.setUrlImg(resultado.getString("imagem_alimento"));
+        int quantidade = resultado.getInt("pedido_alimento_quantidade");
+        return new AlimentoQuantidade(alimento, quantidade);
+    }
+
+    private Pedido getPedidoById(List<Pedido> pedidos, int id) {
+		return pedidos.stream().filter(p -> p.getId() == id).findFirst().get();
+    }
 }

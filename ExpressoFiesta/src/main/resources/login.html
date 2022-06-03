@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/login.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <h1 class="logo_preto">
+          Expresso
+          <h2 class="logo_vermelho">Fiesta</h2>
+        </h1>
+      </div>
+    </header>
+    <main>
+      <h2 class="subtitulo">Já é cadastrado? Faça seu login</h2>
+      <form action="" id="form_login_usuario">
+        <input
+          id="inputEmail"
+          class="input"
+          type="text"
+          name="login"
+          placeholder="Nickname"
+          required
+        />
+
+        <input
+          id="inputSenha"
+          class="input"
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          required
+        />
+        <button type="submit" id="botao_login_usuario">Entrar</button>
+      </form>
+    </main>
+    <footer class="redirecionando">
+      <h3 class="titulo_redireciona">
+        Ainda não é cadastrado?
+        <a href="./src/pages/cadastro.html">Clique aqui</a>
+      </h3>
+    </footer>
+    <script type="module" src="./src/scripts/login.js"></script>
+  </body>
+</html>

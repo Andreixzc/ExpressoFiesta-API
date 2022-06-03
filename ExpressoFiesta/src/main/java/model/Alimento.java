@@ -1,10 +1,16 @@
 package model;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class Alimento {
 	private int id;
 	private String nome;
 	private int quantidade;
 	private float valor;
+	private String urlImg;
 	
 	public Alimento() {
 		this.id = 0;
@@ -42,10 +48,27 @@ public class Alimento {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
+	public String getUrlImg() {
+		return urlImg;
+	}
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
 	@Override
 	public String toString() {
-		return "Alimento [id=" + id + ", nome=" + nome + ", quantidade=" + quantidade + ", valor=" + valor + "]";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		  String json = mapper.writeValueAsString(this);
+		  return json;
+		} catch (JsonProcessingException e) {
+		   e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
+	
 	
 	
 	

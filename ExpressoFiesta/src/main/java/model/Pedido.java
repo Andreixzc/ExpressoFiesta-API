@@ -1,8 +1,12 @@
 package model;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class Pedido {
 	private int id;
@@ -10,8 +14,8 @@ public class Pedido {
 	private float total;
 	private int local_id;
 	private int usuario_id;
-	private List<Atracao> atracoes; // passar somente os ids  
-	private List<AlimentoQuantidade> alimentosQuantidade;  // passar somente os ids  
+	private List<Atracao> atracoes = new ArrayList<>(); // passar somente os ids
+	private List<AlimentoQuantidade> alimentosQuantidade = new ArrayList<>();  // passar somente os ids
 	
 	public Pedido(int id, LocalDate data_pedido, float total, int local_id, int usuario_id) {
 		this.id = id;
@@ -19,8 +23,6 @@ public class Pedido {
 		this.total = total;
 		this.local_id = local_id;
 		this.usuario_id = usuario_id;
-		this.atracoes = new ArrayList<>();
-		this.alimentosQuantidade = new ArrayList<>();
 	}
 	public List<AlimentoQuantidade> getAlimentosQuantidade() {
 		return alimentosQuantidade;
@@ -28,7 +30,8 @@ public class Pedido {
 	public void setAlimentosQuantidade(List<AlimentoQuantidade> alimentosQuantidade) {
 		this.alimentosQuantidade = alimentosQuantidade;
 	}
-	public Pedido() {}
+	public Pedido() {
+	}
 	public int getId() {
 		return id;
 	}
@@ -65,9 +68,18 @@ public class Pedido {
     public void setAtracoes(List<Atracao> atracoes) {
         this.atracoes = atracoes;
     }
-	@Override
+
+    @Override
 	public String toString() {
-		return "Pedido [id=" + id + ", data_pedido=" + data_pedido + ", total=" + total + ", local_id=" + local_id
-				+ ", usuario_id=" + usuario_id + "]";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		  String json = mapper.writeValueAsString(this);
+		  return json;
+		} catch (JsonProcessingException e) {
+		   e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 }

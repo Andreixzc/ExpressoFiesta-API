@@ -80,6 +80,7 @@ public class LocalDAO extends DAO {
 				local.setNome(resultado.getString("nome"));
 				local.setStatus(resultado.getString("status"));
 				local.setValor(resultado.getFloat("valor"));
+				local.setUrlImg(resultado.getString("local_imagem"));
 				retorno.add(local);
 			}
 			st.close();
@@ -102,6 +103,7 @@ public class LocalDAO extends DAO {
 			local.setNome(resultado.getString("nome"));
 			local.setStatus(resultado.getString("status"));
 			local.setValor(resultado.getFloat("valor"));
+			local.setUrlImg(resultado.getString("local_imagem"));
 			}
 			return local;
 			

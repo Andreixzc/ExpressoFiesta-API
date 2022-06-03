@@ -77,6 +77,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
+				alimento.setUrlImg(resultado.getString("imagem_alimento"));
 				retorno.add(alimento);
 			}
 			st.close();
@@ -100,6 +101,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
+				alimento.setUrlImg(resultado.getString("imagem_alimento"));
 			}
 			
 			return alimento;

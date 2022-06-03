@@ -1,5 +1,10 @@
 package model;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class Pedido_atracao {
 	private int pedido_id;
 	private int atracao_id;
@@ -22,7 +27,17 @@ public class Pedido_atracao {
 	}
 	@Override
 	public String toString() {
-		return "Pedido_atracao [pedido_id=" + pedido_id + ", atracao_id=" + atracao_id + "]";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		  String json = mapper.writeValueAsString(this);
+		  return json;
+		} catch (JsonProcessingException e) {
+		   e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	

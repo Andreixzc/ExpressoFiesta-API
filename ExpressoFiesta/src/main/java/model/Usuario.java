@@ -1,5 +1,10 @@
 package model;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class Usuario {
 	private int id;
 	private String email;
@@ -49,8 +54,17 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", login=" + login + ", nome=" + nome + ", senha=" + senha
-				+ "]";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		  String json = mapper.writeValueAsString(this);
+		  return json;
+		} catch (JsonProcessingException e) {
+		   e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	

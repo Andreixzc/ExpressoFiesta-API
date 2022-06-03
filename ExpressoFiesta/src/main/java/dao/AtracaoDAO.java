@@ -74,6 +74,7 @@ public class AtracaoDAO extends DAO {
 				atracao.setId(resultado.getInt("id"));
 				atracao.setNome(resultado.getString("nome"));
 				atracao.setValor(resultado.getFloat("valor"));
+				atracao.setUrlImg(resultado.getString("atracao_imagem"));
 				retorno.add(atracao);
 			}
 			st.close();
@@ -96,6 +97,7 @@ public class AtracaoDAO extends DAO {
 			atracao.setId(resultado.getInt("id"));
 			atracao.setNome(resultado.getString("nome"));
 			atracao.setValor(resultado.getFloat("valor"));
+			atracao.setUrlImg(resultado.getString("atracao_imagem"));
 			}
 			return atracao;
 			
@@ -103,6 +105,5 @@ public class AtracaoDAO extends DAO {
 			throw new RuntimeException();
 		}
 	}
-
 
 }

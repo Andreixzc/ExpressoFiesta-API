@@ -1,11 +1,17 @@
 package model;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class Local {
 	private int id;
 	private String endereco;
 	private String nome;
 	private String status;
 	private Float valor;
+	private String urlImg;
 	
 	public Local(int id, String endereco, String nome, String status, Float valor) {
 		this.id = id;
@@ -57,12 +63,26 @@ public class Local {
 	public void setValor(Float valor) {
 		this.valor = valor;
 	}
-
-	@Override
-	public String toString() {
-		return "Local [id=" + id + ", endereco=" + endereco + ", nome=" + nome + ", status=" + status + ", valor="
-				+ valor + "]";
+	public String getUrlImg() {
+		return urlImg;
+	}
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
 	}
 	
+	@Override
+	public String toString() {
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+		  String json = mapper.writeValueAsString(this);
+		  return json;
+		} catch (JsonProcessingException e) {
+		   e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	
 }

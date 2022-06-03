@@ -84,8 +84,6 @@ public class PedidoService {
 			j = j +2;	
 		}
 		
-		
-		
 		for (int i = 0; i < vetAtracoes.length; i++) {
 			vetparser[i] = Integer.parseInt(vetAtracoes[i]);//converte a string do parametro em um array de int referente ao id das atracoes
 		}
@@ -95,6 +93,8 @@ public class PedidoService {
 			Atracao atracao = atracaoDAO.buscar(vetparser[i]);
 			pedido.getAtracoes().add(atracao);	//Instancia e adiciona as atracoes ao pedido percorrendo o array;
 		}
+		
+		System.out.println();
 		////////////////////////////////////////////////////////////////
 		if (pedidoDAO.insert(pedido)) {
 			response.status(201);
