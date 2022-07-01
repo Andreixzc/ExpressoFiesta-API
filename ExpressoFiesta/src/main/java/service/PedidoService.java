@@ -94,7 +94,6 @@ public class PedidoService {
 			pedido.getAtracoes().add(atracao);	//Instancia e adiciona as atracoes ao pedido percorrendo o array;
 		}
 		
-		System.out.println();
 		////////////////////////////////////////////////////////////////
 		if (pedidoDAO.insert(pedido)) {
 			response.status(201);

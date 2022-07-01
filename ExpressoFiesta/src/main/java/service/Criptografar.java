@@ -6,7 +6,6 @@ import java.security.MessageDigest;
 public class Criptografar {
 	
 	public static String criptografar(String pw) {
-		
 		String retorno = "";
 		MessageDigest md;
 		try {

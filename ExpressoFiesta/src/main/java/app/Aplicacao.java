@@ -2,28 +2,11 @@ package app;
 
 import static spark.Spark.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
-import dao.AlimentoDAO;
-import dao.AtracaoDAO;
-import dao.LocalDAO;
-import dao.PedidoDAO;
-import dao.UsuarioDAO;
-import model.Alimento;
-import model.AlimentoQuantidade;
-import model.Atracao;
-import model.Local;
-import model.Pedido;
-import model.Pedido_alimento;
-import model.Usuario;
 import service.AlimentoService;
 import service.AtracaoService;
 import service.LocalService;
 import service.PedidoService;
-import service.ProdutoService;
 import service.UsuarioService;
-import spark.Request;
 
 
 public class Aplicacao {
@@ -33,10 +16,9 @@ public class Aplicacao {
 	private static LocalService localService = new LocalService();
 	private static PedidoService pedidoService = new PedidoService();
 	private static UsuarioService usuarioService = new UsuarioService();
-	
-	
     public static void main(String[] args) {
        port(6789);
+      
 ///////////////////////////////////////////////////////AlimentoService////////////////////////////////////////
 	   get("/alimento/list", (request, response) -> alimentoService.getAll(request, response));
 
@@ -87,5 +69,9 @@ public class Aplicacao {
 	   post("/usuario/update/:id", (request, response) -> usuarioService.update(request, response));
 
 	   delete("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
+	   
+	   post("/usuario/login", (request, response) -> usuarioService.validaLogin(request, response));
+	   
+	   
     }
 }

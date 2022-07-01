@@ -19,6 +19,10 @@ public class Usuario {
 		this.nome = nome;
 		this.senha = senha;
 	}
+	public  Usuario(String login,String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
 	public Usuario () {
 		
 	}
