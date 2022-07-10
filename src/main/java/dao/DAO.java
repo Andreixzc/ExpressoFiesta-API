@@ -18,8 +18,13 @@ public class DAO {
 //		String username = "ti2cc";
 //		String password = "ti@cc";
 //		boolean status = false;
+		
+		
 		String driverName = "org.postgresql.Driver";                    
-		String url = "postgres://gayjdxqlvajvtf:0532018243af88e2ca250c8e0f0b422af3c9f542af821f76e2a125804861af0d@ec2-52-20-166-21.compute-1.amazonaws.com:5432/dfbvdl2ol0a25b";
+		String serverName = "ec2-52-20-166-21.compute-1.amazonaws.com";
+		String mydatabase = "dfbvdl2ol0a25b";
+		int porta = 5432;
+		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase;
 		String username = "gayjdxqlvajvtf";
 		String password = "0532018243af88e2ca250c8e0f0b422af3c9f542af821f76e2a125804861af0d";
 		boolean status = false;
