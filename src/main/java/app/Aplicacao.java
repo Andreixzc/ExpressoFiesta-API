@@ -17,7 +17,7 @@ public class Aplicacao {
 	private static PedidoService pedidoService = new PedidoService();
 	private static UsuarioService usuarioService = new UsuarioService();
     public static void main(String[] args) {
-       port(6789);
+       port(8080);
       
 ///////////////////////////////////////////////////////AlimentoService////////////////////////////////////////
 	   get("/alimento/list", (request, response) -> alimentoService.getAll(request, response));
