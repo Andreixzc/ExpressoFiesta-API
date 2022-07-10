@@ -16,18 +16,15 @@ public class Aplicacao {
 	private static LocalService localService = new LocalService();
 	private static PedidoService pedidoService = new PedidoService();
 	private static UsuarioService usuarioService = new UsuarioService();
-	 static int getHerokuAssignedPort() {
-	        ProcessBuilder processBuilder = new ProcessBuilder();
-	        if (processBuilder.environment().get("PORT") != null) {
-	            return Integer.parseInt(processBuilder.environment().get("PORT"));
-	        }
-	        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
-	    }
+//	 static int getHerokuAssignedPort() {
+//	        ProcessBuilder processBuilder = new ProcessBuilder();
+//	        if (processBuilder.environment().get("PORT") != null) {
+//	            return Integer.parseInt(processBuilder.environment().get("PORT"));
+//	        }
+//	        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+//	    }
     public static void main(String[] args) {
-    	port(getHerokuAssignedPort());
-    		
-    	
-//       port();
+       port(6789);
       
 ///////////////////////////////////////////////////////AlimentoService////////////////////////////////////////
  
