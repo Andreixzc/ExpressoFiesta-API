@@ -102,16 +102,11 @@ public class UsuarioService {
 		if (usuario != null) {
 			usuarioDAO.delete(usuario.getId());
 			response.status(200);
-			return "Usuario com id " + usuario.getId() + " excluído!";	
+			return "Usuario com id " + usuario.getId() + " excluido!";
 		}else {
 			response.status(404);
-			return "Usuario não encontrado";
+			return "Usuario nao encontrado";
 		}
 	}
-	
-	
-	
-	
-	
 
 }

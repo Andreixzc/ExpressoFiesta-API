@@ -98,10 +98,10 @@ public class AlimentoService {
 		if (alimento != null) {
 			alimentoDAO.delete(alimento.getId());
 			response.status(200); // success
-			return "Alimento com id " + alimento.getId() + " excluído!";
+			return "Alimento com id " + alimento.getId() + " excluido!";
 		} else {
 			response.status(404); // 404 Not found
-			return "Alimento não encontrado";
+			return "Alimento nao encontrado";
 		}
 	}
 }

@@ -50,8 +50,8 @@ public class PedidoService {
 	public Pedido insert(Request request,Response response) {
 		setReponseHeaders(response);
 
-		// alimentosQuantidade=1,10,2,16 códigos
-		// atracoes=1,2,3,4 códigos
+		// alimentosQuantidade=1,10,2,16 codigos
+		// atracoes=1,2,3,4 codigos
 
 		String data = request.queryParams("data_pedido");
 		float total = Float.parseFloat(request.queryParams("total"));
@@ -130,10 +130,10 @@ public class PedidoService {
 		if (pedido != null) {
 			pedidoDAO.delete(pedido.getId());
 			response.status(200);
-			return "Pedidi de id " + pedido.getId() + " excluído!";
+			return "Pedidi de id " + pedido.getId() + " excluido!";
 		}else {
 			response.status(404);
-			return "Pedido não encontrado";
+			return "Pedido nao encontrado";
 		}
 	}
 }

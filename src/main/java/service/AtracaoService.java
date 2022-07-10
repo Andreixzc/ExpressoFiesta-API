@@ -99,10 +99,10 @@ public class AtracaoService {
 		if (atracao != null) {
 			atracaoDAO.delete(atracao.getId());
 			response.status(200);
-			return "Local com id " + atracao.getId() + " excluído!";
+			return "Local com id " + atracao.getId() + " excluido!";
 		} else {
 			response.status(404);
-			return "Local não encontrado";
+			return "Local nao encontrado";
 		}
 	}
 	
