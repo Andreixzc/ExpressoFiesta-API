@@ -47,8 +47,8 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>src.main.java.app.Aplicacao</mainClass>
+<!--							<classpathPrefix>lib/</classpathPrefix>-->
+							<mainClass>app.Aplicacao</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
