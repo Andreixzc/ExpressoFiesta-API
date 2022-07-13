@@ -46,7 +46,7 @@ public class PedidoDAO extends DAO {
 		try {
 			String sql = "INSERT INTO pedido (data_pedido,total,local_id,usuario_id) VALUES ('"
 					+ pedido.getData_pedido() + "'," + pedido.getTotal() + "," + pedido.getLocal_id() + ","
-					+ pedido.getUsuario_id() + ")";
+					+ pedido.getUsuario_id() + ")";//Inseri dados do pedodo na tabela
 			
 			PreparedStatement st = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			st.executeUpdate();
@@ -61,7 +61,7 @@ public class PedidoDAO extends DAO {
 						+ atracao.getId()  + ")";
 				PreparedStatement st2 = conexao.prepareStatement(sql2);
 				st2.executeUpdate();
-				st2.close();
+				st2.close();//pega todas as atracoes do pedido e inseri na tabela pedido_atracao
 			}
 
 			for (AlimentoQuantidade alimentoQuantidade : pedido.getAlimentosQuantidade()) {
@@ -69,7 +69,7 @@ public class PedidoDAO extends DAO {
                         + alimentoQuantidade.getAlimento().getId() + "," + idPedido + ")";
                 PreparedStatement st3 = conexao.prepareStatement(sql3);
                 st3.executeUpdate();
-                st3.close();
+                st3.close();//pega todas os alimentos do pedido e inseri na tabela pedido_alimento
             }
 
 			st.close();
