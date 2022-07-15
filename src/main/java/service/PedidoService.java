@@ -67,7 +67,7 @@ public class PedidoService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
 		LocalDate dataFinal = LocalDate.parse(data, formatter);
 		///////////////////////////////////////////////////////
-		String atracoes = request.queryParams("atracoes_id");
+		String atracoes = request.queryParams("atracoes_id");//1,2
 		//id do pedido | id atracao
 		String alimentos = request.queryParams("alimentos_id");
 		//Quantidade alimento | id alimento| id do pedido
@@ -104,7 +104,6 @@ public class PedidoService {
 			Atracao atracao = atracaoDAO.buscar(vetparser[i]);
 			pedido.getAtracoes().add(atracao);	//Instancia e adiciona as atracoes ao pedido percorrendo o array;
 		}
-		
 		////////////////////////////////////////////////////////////////
 		if (pedidoDAO.insert(pedido)) {
 			response.status(201);
