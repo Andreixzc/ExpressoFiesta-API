@@ -21,12 +21,12 @@ public class DAO {
 		
 		
 		String driverName = "org.postgresql.Driver";                    
-		String serverName = "ec2-3-213-228-206.compute-1.amazonaws.com";
-		String mydatabase = "dcqh0plipq7ec0";
+		String serverName = "ec2-54-86-106-48.compute-1.amazonaws.com";
+		String mydatabase = "d9if6lqctg7kn";
 		int porta = 5432;
 		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase;
-		String username = "jmhvaisapilrzz";
-		String password = "00083e90b3cffb1385fc2197a1972772c1437fe0d4b185ed0cc774efc04b5093";
+		String username = "vzawdwoevxiieu";
+		String password = "11fd527765148cfab5a8a67061db66f2db0529561c30a329835c714ad89c57dc";
 		boolean status = false;
 
 		try {
