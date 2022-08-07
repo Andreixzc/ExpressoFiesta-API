@@ -83,8 +83,10 @@ public class UsuarioService {
 	public Usuario update(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
 		String body = request.body();
+		System.out.print(body);
 		ObjectMapper mapper = new ObjectMapper();
 		Usuario usuario = mapper.readValue(body, Usuario.class);
+		System.out.print(usuario);
 		if (usuarioDAO.update(usuario)) {
 			response.status(200);
 			return usuario;
@@ -92,12 +94,8 @@ public class UsuarioService {
 			response.status(404);
 			return null;
 		}
-	}//mudando metodo
-		
-		
-		
-	
-	
+	}
+	//mudando metodo
 //	public Usuario update(Request request, Response response) {
 //		setReponseHeaders(response);
 //		Usuario usuario = buscarPorId(request);
