@@ -79,22 +79,41 @@ public class UsuarioService {
 			return null;
 		}	
 	}
-	public Usuario update(Request request, Response response) {
+	
+	public Usuario update(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
 		setReponseHeaders(response);
-		Usuario usuario = buscarPorId(request);
-		if (usuario != null) {
-			usuario.setEmail(request.queryParams("email"));
-			usuario.setLogin(request.queryParams("login"));
-			usuario.setNome(request.queryParams("nome"));
-			usuario.setSenha(request.queryParams("senha"));
-			usuarioDAO.update(usuario);
+		String body = request.body();
+		ObjectMapper mapper = new ObjectMapper();
+		Usuario usuario = mapper.readValue(body, Usuario.class);
+		if (usuarioDAO.update(usuario)) {
 			response.status(200);
 			return usuario;
-		}else {
+		} else {
 			response.status(404);
-		}	return null;
+			return null;
+		}
+	}//mudando metodo
 		
-	}
+		
+		
+	
+	
+//	public Usuario update(Request request, Response response) {
+//		setReponseHeaders(response);
+//		Usuario usuario = buscarPorId(request);
+//		if (usuario != null) {
+//			usuario.setEmail(request.queryParams("email"));
+//			usuario.setLogin(request.queryParams("login"));
+//			usuario.setNome(request.queryParams("nome"));
+//			usuario.setSenha(request.queryParams("senha"));
+//			usuarioDAO.update(usuario);
+//			response.status(200);
+//			return usuario;
+//		}else {
+//			response.status(404);
+//		}	return null;
+//		
+//	}
 	
 	public String delete(Request request,Response response) {
 		Usuario usuario = buscarPorId(request);
