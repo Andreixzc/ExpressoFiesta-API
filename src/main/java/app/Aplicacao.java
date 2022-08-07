@@ -76,7 +76,7 @@ public class Aplicacao {
 
         post("/usuario/insert", (request, response) -> usuarioService.insert(request, response));
 
-        post("/usuario/update/", (request, response) -> usuarioService.update(request, response));
+        post("/usuario/update", (request, response) -> usuarioService.update(request, response));
 
         delete("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
 
