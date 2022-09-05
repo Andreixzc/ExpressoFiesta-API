@@ -80,11 +80,11 @@ public class AlimentoService {
 //			alimento.setNome(request.queryParams("nome"));
 //			alimento.setValor(Float.parseFloat(request.queryParams("valor")));
 //			alimento.setQuantidade(Integer.parseInt(request.queryParams("quantidade")));
-			String body = request.body();
-			ObjectMapper mapper = new ObjectMapper();
-			Alimento alimento2 = mapper.readValue(body, Alimento.class);
+			String body = request.body();//Extraio o body da requisião.
+			ObjectMapper mapper = new ObjectMapper();//Instanciio o mapper
+			Alimento alimento2 = mapper.readValue(body, Alimento.class);//Transoformo o body em um objeto alimento
 			alimentoDAO.update(alimento2);
-			response.status(200); // success
+			response.status(200); // successna
 			return alimento;
 		} else {
 			response.status(404); // 404 Not found

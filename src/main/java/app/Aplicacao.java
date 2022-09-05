@@ -4,9 +4,12 @@ import static spark.Spark.*;
 
 import service.AlimentoService;
 import service.AtracaoService;
+import service.EmpresaService;
 import service.LocalService;
 import service.PedidoService;
 import service.UsuarioService;
+import spark.Request;
+import spark.Response;
 
 
 public class Aplicacao {
@@ -16,6 +19,7 @@ public class Aplicacao {
     private static LocalService localService = new LocalService();
     private static PedidoService pedidoService = new PedidoService();
     private static UsuarioService usuarioService = new UsuarioService();
+    private static EmpresaService empresaService = new EmpresaService();
 
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
@@ -27,7 +31,6 @@ public class Aplicacao {
 
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
-
 ///////////////////////////////////////////////////////AlimentoService////////////////////////////////////////
 
         get("/alimento/list", (request, response) -> alimentoService.getAll(request, response));
@@ -81,7 +84,8 @@ public class Aplicacao {
         delete("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
 
         post("/usuario/login", (request, response) -> usuarioService.validaLogin(request, response));
-
+/////////////////////////////////////////////////////Empresa///////////////////////////////////////////
+        post("/empresa/insert", (request, response) -> empresaService.insert(request, response));
 
     }
 }

@@ -67,7 +67,7 @@ public class AlimentoDAO extends DAO {
 	
 	public List<Alimento> listar() {
 		String sql = "SELECT * FROM alimento";
-		List<Alimento> retorno = new ArrayList<>();
+		List<Alimento> retorno = new ArrayList<>();	
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
