@@ -87,5 +87,13 @@ public class Aplicacao {
 /////////////////////////////////////////////////////Empresa///////////////////////////////////////////
         post("/empresa/insert", (request, response) -> empresaService.insert(request, response));
 
+        get("/empresa/:id", (request, response) -> empresaService.get(request, response));
+
+        post("/empresa/insert", (request, response) -> empresaService.insert(request, response));
+
+        post("/empresa/update", (request, response) -> empresaService.update(request, response));
+
+        delete("/empresa/delete/:id", (request, response) -> empresaService.delete(request, response));
+
     }
 }

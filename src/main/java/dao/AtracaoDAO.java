@@ -23,8 +23,14 @@ public class AtracaoDAO extends DAO {
 		
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO atracao (nome,valor) VALUES ('"+atracao.getNome()+"'," + atracao.getValor()+")";
+			// String sql = "INSERT INTO atracao (nome,valor) VALUES ('"+atracao.getNome()+"'," + atracao.getValor()+")";
+			// PreparedStatement st = conexao.prepareStatement(sql);
+			String sql = "INSERT INTO atracao (nome,valor,atracao_imagem,id_empresa) VALUES (?,?,?,?)";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.setString(1, atracao.getNome());
+			st.setFloat(2, atracao.getValor());
+			st.setString(3, atracao.getUrlImg());
+			st.setInt(4, atracao.getId_empresa());
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -37,9 +43,13 @@ public class AtracaoDAO extends DAO {
 	public boolean update(Atracao atracao) {
 		boolean status = false;
 		try {
-			String sql = "UPDATE atracao set nome = '"+atracao.getNome()+",valor = "+atracao.getValor()+
-					" where id = "+atracao.getId();
+			String sql = "Update atracao set nome = ?, valor = ?, atracao_imagem = ?, id_empresa = ? where id = ?";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.setString(1, atracao.getNome());
+			st.setFloat(2, atracao.getValor());
+			st.setString(3, atracao.getUrlImg());
+			st.setInt(4, atracao.getId_empresa());
+			st.setInt(5, atracao.getId());
 			st.close();
 			status = true;
 			
@@ -75,6 +85,7 @@ public class AtracaoDAO extends DAO {
 				atracao.setNome(resultado.getString("nome"));
 				atracao.setValor(resultado.getFloat("valor"));
 				atracao.setUrlImg(resultado.getString("atracao_imagem"));
+				atracao.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(atracao);
 			}
 			st.close();
@@ -98,6 +109,7 @@ public class AtracaoDAO extends DAO {
 			atracao.setNome(resultado.getString("nome"));
 			atracao.setValor(resultado.getFloat("valor"));
 			atracao.setUrlImg(resultado.getString("atracao_imagem"));
+			atracao.setId_empresa(resultado.getInt("id_empresa"));
 			}
 			return atracao;
 			

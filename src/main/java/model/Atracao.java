@@ -10,7 +10,16 @@ public class Atracao {
 	private String nome;
 	private float valor;
 	private String urlImg;
+	private int id_empresa;
 	
+	public int getId_empresa() {
+		return id_empresa;
+	}
+
+	public void setId_empresa(int id_empresa) {
+		this.id_empresa = id_empresa;
+	}
+
 	public Atracao(int id, String nome, float valor) {
 		this.id = id;
 		this.nome = nome;

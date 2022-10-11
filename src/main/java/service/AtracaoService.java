@@ -8,7 +8,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import dao.AtracaoDAO;
-import model.Alimento;
 import model.Atracao;
 import spark.Request;
 import spark.Response;

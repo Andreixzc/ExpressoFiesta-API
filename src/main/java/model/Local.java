@@ -12,7 +12,14 @@ public class Local {
 	private String status;
 	private Float valor;
 	private String urlImg;
+	private int id_empresa;
 	
+	public int getId_empresa() {
+		return id_empresa;
+	}
+	public void setId_empresa(int id_empresa) {
+		this.id_empresa = id_empresa;
+	}
 	public Local(int id, String endereco, String nome, String status, Float valor) {
 		this.id = id;
 		this.endereco = endereco;

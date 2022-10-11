@@ -23,8 +23,13 @@ public class AlimentoDAO extends DAO {
 		
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO alimento (nome,quantidade,valor) VALUES ('"+alimento.getNome()+"', " + alimento.getQuantidade() + ", " + alimento.getValor()+")";
+			String sql = "INSERT INTO alimento (nome,quantidade,valor,imagem_alimento,id_empresa) VALUES (?,?,?,?,?)";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.setString(1, alimento.getNome());
+			st.setInt(2, alimento.getQuantidade());
+			st.setFloat(3, alimento.getValor());
+			st.setString(4, alimento.getUrlImg());
+			st.setInt(5, alimento.getId_empresa());
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -37,9 +42,14 @@ public class AlimentoDAO extends DAO {
 	public boolean update(Alimento alimento) {
 		boolean status = false;
 		try {
-			String sql = "UPDATE alimento set nome = '"+alimento.getNome()+"',quantidade = "+alimento.getQuantidade()+",valor = "+alimento.getValor()+
-					" where id = "+alimento.getId();
+			String sql = "UPDATE alimento set nome = ?,quantidade = ?,valor = ?, imagem_alimento = ?, id_empresa = ? where id = ?";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.setString(1, alimento.getNome());
+			st.setInt(2, alimento.getQuantidade());
+			st.setFloat(3, alimento.getValor());
+			st.setString(4, alimento.getUrlImg());
+			st.setInt(5, alimento.getId_empresa());
+			st.setInt(6, alimento.getId());
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -78,6 +88,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
 				alimento.setUrlImg(resultado.getString("imagem_alimento"));
+				alimento.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(alimento);
 			}
 			st.close();
@@ -102,6 +113,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
 				alimento.setUrlImg(resultado.getString("imagem_alimento"));
+				alimento.setId_empresa(resultado.getInt("id_empresa"));
 			}
 			
 			return alimento;
