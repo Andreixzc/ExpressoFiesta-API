@@ -41,7 +41,7 @@ public class PedidoDAO extends DAO {
 	}
 
 	public boolean insert(Pedido pedido) {
-
+		//pedido instanciado por parametro com os arraylists preenchidos.
 		boolean status = false;
 		try {
 			String sql = "INSERT INTO pedido (data_pedido,total,local_id,usuario_id) VALUES ('"
@@ -56,7 +56,7 @@ public class PedidoDAO extends DAO {
                 idPedido = generatedKeys.getInt("id");
             }
 
-			for (Atracao atracao : pedido.getAtracoes()) {
+			for (Atracao atracao : pedido.getAtracoes()) {//loopa no arraylist de atracoes do pedido e armazena eles na table pedido_atracao
 				String sql2 = "INSERT INTO pedido_atracao (pedido_id, atracao_id) VALUES ('" + idPedido + "',"
 						+ atracao.getId()  + ")";
 				PreparedStatement st2 = conexao.prepareStatement(sql2);
@@ -69,7 +69,7 @@ public class PedidoDAO extends DAO {
                         + alimentoQuantidade.getAlimento().getId() + "," + idPedido + ")";
                 PreparedStatement st3 = conexao.prepareStatement(sql3);
                 st3.executeUpdate();
-                st3.close();//pega todas os alimentos do pedido e inseri na tabela pedido_alimento
+                st3.close();//pega todas os alimentos do pedido e insere na tabela pedido_alimento
             }
 
 			st.close();
@@ -101,14 +101,15 @@ public class PedidoDAO extends DAO {
 			PreparedStatement st = conexao.prepareStatement(SELECT_QUERY);
 			ResultSet resultado = st.executeQuery();
 			while (resultado.next()) {
-				Pedido pedido = criarPedido(resultado);
-				retorno.add(pedido);
+				Pedido pedido = criarPedido(resultado);//Funcao que cria um pedido
+				retorno.add(pedido);//Adiciono o pedido no arraylist de pedido
 			}
-			st.close();
+			st.close();//Preenche os dados do pedido.
 
             PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO);
             resultado = stAtracao.executeQuery();
             while (resultado.next()) {
+            	//Instancio os pedidos pegando suas respectivas atracoes pelo id e adicionando ao arraylist de atração do model pedido
 				Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
                 pedido.getAtracoes().add(criarAtracao(resultado));
             }

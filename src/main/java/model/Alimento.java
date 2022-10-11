@@ -11,6 +11,7 @@ public class Alimento {
 	private int quantidade;
 	private float valor;
 	private String urlImg;
+	private int id_empresa;
 	
 	public Alimento() {
 		this.id = 0;
@@ -67,6 +68,12 @@ public class Alimento {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	public int getId_empresa() {
+		return id_empresa;
+	}
+	public void setId_empresa(int id_empresa) {
+		this.id_empresa = id_empresa;
 	}
 	
 	
