@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -28,13 +29,18 @@ public class EmpresaService {
     }
 
     public Empresa insert(Request request, Response response)
-            throws JsonParseException, JsonMappingException, IOException {
+            throws JsonParseException, JsonMappingException, IOException, SQLException {
         setReponseHeaders(response);
         String body = request.body();
         ObjectMapper mapper = new ObjectMapper();
         Empresa empresa = mapper.readValue(body, Empresa.class);
-
-        return empresa;
+        if (empresaDao.insert(empresa)) {
+			response.status(200);
+			return empresa;
+		}else {
+			response.status(404);
+			return null;
+		}
     }
 
     public List<Empresa> getAll(Request request, Response response) {
