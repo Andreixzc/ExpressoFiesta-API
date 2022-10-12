@@ -43,10 +43,13 @@ import service.Criptografar;
 			usuario.setSenha(Criptografar.criptografar(usuario.getSenha()));
 			boolean status = false;
 			try {
-				String sql = "INSERT INTO usuario (email,login,nome,senha) VALUES ('"+usuario.getEmail()
-				+"', '"+usuario.getLogin()+"','"+usuario.getNome()+"', '"
-				+usuario.getSenha()+"')";
+				String sql = "insert into usuario (email,login,nome,senha,vendedor) values (?,?,?,?,?)";
 				PreparedStatement st = conexao.prepareStatement(sql);
+				st.setString(1, usuario.getEmail());
+				st.setString(2, usuario.getLogin());
+				st.setString(3, usuario.getNome());
+				st.setString(4, usuario.getSenha());
+				st.setString(5, usuario.getVendedor());
 				st.executeUpdate();
 				st.close();
 				status = true;
