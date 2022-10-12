@@ -59,13 +59,14 @@ import service.Criptografar;
 	public boolean update(Usuario usuario) {
 		boolean status = false;
 		try {
-			String sql = "Update usuario set email = ?, login = ?, nome = ?, senha = ? where id = ?";
+			String sql = "Update usuario set email = ?, login = ?, nome = ?, senha = ?,vendedor = ? where id = ?";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.setString(1, usuario.getEmail());
 			st.setString(2, usuario.getLogin());
 			st.setString(3, usuario.getNome());
 			st.setString(4, usuario.getSenha());
-			st.setInt(5, usuario.getId());
+			st.setString(5, usuario.getVendedor());
+			st.setInt(6, usuario.getId());
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -80,7 +81,7 @@ import service.Criptografar;
 		boolean status = false;
 		
 		try {
-			String sql = "DELETE from local where id = "+id;
+			String sql = "DELETE from usuario where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -104,6 +105,7 @@ import service.Criptografar;
 				usuario.setLogin(resultado.getString("login"));
 				usuario.setNome(resultado.getString("nome"));
 				usuario.setSenha(resultado.getString("senha"));
+				usuario.setVendedor(resultado.getString("vendedor"));
 				retorno.add(usuario);
 			}
 			st.close();
@@ -126,6 +128,7 @@ import service.Criptografar;
 			usuario.setLogin(resultado.getString("login"));
 			usuario.setNome(resultado.getString("nome"));
 			usuario.setSenha(resultado.getString("senha"));
+			usuario.setVendedor(resultado.getString("vendedor"));
 			}
 			return usuario;
 			

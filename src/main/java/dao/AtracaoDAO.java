@@ -39,7 +39,6 @@ public class AtracaoDAO extends DAO {
 		}
 		return status;
 	}
-	
 	public boolean update(Atracao atracao) {
 		boolean status = false;
 		try {
