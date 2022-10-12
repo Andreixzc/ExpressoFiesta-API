@@ -85,6 +85,9 @@ public class Aplicacao {
 
         post("/usuario/login", (request, response) -> usuarioService.validaLogin(request, response));
 /////////////////////////////////////////////////////Empresa///////////////////////////////////////////
+        
+        get("/empresa/list", (request, response) -> empresaService.getAll(request, response));
+
         post("/empresa/insert", (request, response) -> empresaService.insert(request, response));
 
         get("/empresa/:id", (request, response) -> empresaService.get(request, response));
