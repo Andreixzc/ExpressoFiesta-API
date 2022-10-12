@@ -38,6 +38,7 @@ public class EmpresaService {
         System.out.println("printnado empresa"+empresa.toString());
         if (empresaDao.insert(empresa)) {
 			response.status(201);
+            System.out.println("printando response"+response);
 			return empresa;
 		}else {
 			response.status(404);
