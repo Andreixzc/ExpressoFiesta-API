@@ -98,8 +98,7 @@ public class LocalDAO extends DAO {
 		} catch (Exception e) {
 			System.out.println("Erro ao listar");
 		}
-		return retorno;
-		
+		return retorno;	
 	}
 	public Local buscar(int id) {
 		Local local = new Local();
