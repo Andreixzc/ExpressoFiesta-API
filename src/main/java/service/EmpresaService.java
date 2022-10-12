@@ -37,7 +37,7 @@ public class EmpresaService {
         Empresa empresa = mapper.readValue(body, Empresa.class);
         System.out.println("printnado empresa"+empresa.toString());
         if (empresaDao.insert(empresa)) {
-			response.status(200);
+			response.status(201);
 			return empresa;
 		}else {
 			response.status(404);
