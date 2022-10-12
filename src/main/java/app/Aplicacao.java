@@ -98,5 +98,11 @@ public class Aplicacao {
 
         delete("/empresa/delete/:id", (request, response) -> empresaService.delete(request, response));
 
+        get("/empresa/alimentoList/:id", (request, response) -> empresaService.getAlimento(request, response));
+
+        get("/empresa/atracaoList/:id", (request, response) -> empresaService.getAtracao(request, response));
+
+        get("/empresa/localList/:id", (request, response) -> empresaService.getLocal(request, response));
+
     }
 }

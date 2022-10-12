@@ -42,6 +42,21 @@ public class EmpresaService {
         return empresaDao.listar();
     }
 
+    public List<Empresa> getAlimento(Request request, Response response) {
+        setReponseHeaders(response);
+        return empresaDao.listar();
+    }
+
+    public List<Empresa> getAtracao(Request request, Response response) {
+        setReponseHeaders(response);
+        return empresaDao.listar();
+    }
+
+    public List<Empresa> getLocal(Request request, Response response) {
+        setReponseHeaders(response);
+        return empresaDao.listar();
+    }
+
     private Empresa buscarPorId(Request request) {
         int id = Integer.parseInt(request.params(":id"));
         return empresaDao.buscar(id);
@@ -87,5 +102,7 @@ public class EmpresaService {
             return "Erro";
         }
     }
+
+
 
 }
