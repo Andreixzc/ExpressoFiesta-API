@@ -28,6 +28,7 @@ public class EmpresaDao extends DAO {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.setString(1, empresa.getNome_empresa());
 			st.setInt(2, empresa.getId_usuario());
+			System.out.println(st);
 			st.close();
 			status = true;
 		} catch (SQLException u) {
