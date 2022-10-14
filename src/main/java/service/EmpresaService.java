@@ -7,7 +7,10 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import dao.EmpresaDao;
+import model.Alimento;
+import model.Atracao;
 import model.Empresa;
+import model.Local;
 import spark.Request;
 import spark.Response;
 
@@ -48,19 +51,22 @@ public class EmpresaService {
         return empresaDao.listar();
     }
 
-    public List<Empresa> getAlimento(Request request, Response response) {
+    public List<Alimento> getAlimento(Request request, Response response) {
         setReponseHeaders(response);
-        return empresaDao.listar();
+        int id = Integer.parseInt(request.params(":id"));
+        return empresaDao.listarAlimento(id);
     }
 
-    public List<Empresa> getAtracao(Request request, Response response) {
+    public List<Atracao> getAtracao(Request request, Response response) {
         setReponseHeaders(response);
-        return empresaDao.listar();
+        int id = Integer.parseInt(request.params(":id"));
+        return empresaDao.listarAtracao(id);
     }
 
-    public List<Empresa> getLocal(Request request, Response response) {
+    public List<Local> getLocal(Request request, Response response) {
         setReponseHeaders(response);
-        return empresaDao.listar();
+        int id = Integer.parseInt(request.params(":id"));
+        return empresaDao.listarLocal(id);
     }
 
     private Empresa buscarPorId(Request request) {
