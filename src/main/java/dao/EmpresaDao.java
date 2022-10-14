@@ -109,7 +109,6 @@ public class EmpresaDao extends DAO {
 				retorno.add(alimento);
 			}
 			st.close();
-
 		} catch (Exception e) {
 			System.out.println("Erro ao listar");
 		}
