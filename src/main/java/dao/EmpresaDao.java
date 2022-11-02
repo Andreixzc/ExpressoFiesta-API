@@ -22,7 +22,6 @@ public class EmpresaDao extends DAO {
 
 	public boolean insert(Empresa empresa) throws SQLException {
 		boolean status = false;
-
 		try {
 			String sql = "INSERT INTO empresa (nome_empresa,id_usuario) VALUES (?,?)";
 			PreparedStatement st = conexao.prepareStatement(sql);

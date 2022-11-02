@@ -55,6 +55,13 @@ public class Alimento {
 	public void setUrlImg(String urlImg) {
 		this.urlImg = urlImg;
 	}
+	public int getId_empresa() {
+		return id_empresa;
+	}
+	public void setId_empresa(int id_empresa) {
+		this.id_empresa = id_empresa;
+	}
+	
 	@Override
 	public String toString() {
 		
@@ -69,13 +76,7 @@ public class Alimento {
 		}
 		return "";
 	}
-	public int getId_empresa() {
-		return id_empresa;
-	}
-	public void setId_empresa(int id_empresa) {
-		this.id_empresa = id_empresa;
-	}
-	
+
 	
 	
 	

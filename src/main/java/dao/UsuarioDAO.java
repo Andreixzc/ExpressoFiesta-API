@@ -38,7 +38,6 @@ import service.Criptografar;
 		return null;
 	}
 	
-	
 	public boolean insert(Usuario usuario) {		
 			usuario.setSenha(Criptografar.criptografar(usuario.getSenha()));
 			boolean status = false;
@@ -79,7 +78,7 @@ import service.Criptografar;
 		}
 		return status;
 	}
-	
+
 	public boolean delete(int id) {
 		boolean status = false;
 		

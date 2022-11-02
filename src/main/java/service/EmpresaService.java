@@ -35,8 +35,11 @@ public class EmpresaService {
             throws JsonParseException, JsonMappingException, IOException, SQLException {
         setReponseHeaders(response);
         String body = request.body();
+        System.out.println("body:");
+        System.out.println(body);
         ObjectMapper mapper = new ObjectMapper();
         Empresa empresa = mapper.readValue(body, Empresa.class);
+        System.out.println(empresa.toString());
         if (empresaDao.insert(empresa)) {
 			response.status(201);
 			return empresa;

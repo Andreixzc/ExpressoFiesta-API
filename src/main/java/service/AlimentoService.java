@@ -82,6 +82,7 @@ public class AlimentoService {
 //			alimento.setQuantidade(Integer.parseInt(request.queryParams("quantidade")));
 			String body = request.body();//Extraio o body da requisi�o.
 			ObjectMapper mapper = new ObjectMapper();//Instanciio o mapper
+			System.out.println(body);
 			Alimento alimento2 = mapper.readValue(body, Alimento.class);//Transoformo o body em um objeto alimento
 			System.out.println(alimento2.toString());
 			alimentoDAO.update(alimento2);
