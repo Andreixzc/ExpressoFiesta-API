@@ -182,4 +182,23 @@ public class EmpresaDao extends DAO {
 		}
 	}
 
+
+
+	public Empresa buscarPorUsuario(int id) {
+		Empresa empresa = new Empresa();
+		String sql = "select * from empresa where id_usuario ="+id;
+		try {
+			PreparedStatement st = conexao.prepareStatement(sql);
+			ResultSet resultado = st.executeQuery();
+			while (resultado.next()) {
+				empresa.setId(resultado.getInt("id"));
+				empresa.setNome_empresa(resultado.getString("nome_empresa"));
+				empresa.setId_usuario(resultado.getInt("id_usuario"));
+			}
+			return empresa;
+
+		} catch (SQLException u) {
+			throw new RuntimeException();
+		}
+	}
 }

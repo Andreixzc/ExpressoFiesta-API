@@ -92,6 +92,12 @@ public class EmpresaService {
 
     }
 
+    public Empresa getlistUsuario(Request request, Response response){
+        setReponseHeaders(response);
+        int id = Integer.parseInt(request.params(":id"));
+        return empresaDao.buscarPorUsuario(id);
+    }
+
     public Empresa get(Request request, Response response) {
         setReponseHeaders(response);
         Empresa empresa = buscarPorId(request);

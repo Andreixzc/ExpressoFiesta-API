@@ -104,5 +104,9 @@ public class Aplicacao {
 
         get("/empresa/localList/:id", (request, response) -> empresaService.getLocal(request, response));
 
+        get("/empresa/listUsuario/:id", (request, response) -> empresaService.getlistUsuario(request, response));
+
+
+
     }
 }
