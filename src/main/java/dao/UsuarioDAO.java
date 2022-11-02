@@ -21,6 +21,7 @@ import service.Criptografar;
 			close();
 		}
 	public Usuario validaCredenciais(Usuario usuario) {
+		//hue
 		try {
 			String sql = "Select * from usuario where login = ? and senha = ?";
 			PreparedStatement st = conexao.prepareStatement(sql);
