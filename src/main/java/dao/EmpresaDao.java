@@ -186,7 +186,7 @@ public class EmpresaDao extends DAO {
 
 	public Empresa buscarPorUsuario(int id) {
 		Empresa empresa = new Empresa();
-		String sql = "SELECT * FROM empresa where id = " + id;
+		String sql = "SELECT * FROM empresa where id_usuario = " + id;
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
