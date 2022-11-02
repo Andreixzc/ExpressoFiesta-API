@@ -9,7 +9,16 @@ public class Atracao {
 	private int id;
 	private String nome;
 	private float valor;
-	private String urlImg;
+	// private String urlImg;
+	private String atracao_imagem;
+	public String getAtracao_imagem() {
+		return atracao_imagem;
+	}
+
+	public void setAtracao_imagem(String atracao_imagem) {
+		this.atracao_imagem = atracao_imagem;
+	}
+
 	private int id_empresa;
 	
 	public int getId_empresa() {
@@ -50,12 +59,12 @@ public class Atracao {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	public String getUrlImg() {
-		return urlImg;
-	}
-	public void setUrlImg(String urlImg) {
-		this.urlImg = urlImg;
-	}
+	// public String getUrlImg() {
+	// 	return urlImg;
+	// }
+	// public void setUrlImg(String urlImg) {
+	// 	this.urlImg = urlImg;
+	// }
 	
 	@Override
 	public String toString() {

@@ -173,7 +173,7 @@ public class PedidoDAO extends DAO {
         atracao.setId(resultado.getInt("id"));
         atracao.setNome(resultado.getString("nome"));
         atracao.setValor(resultado.getFloat("valor"));
-        atracao.setUrlImg(resultado.getString("atracao_imagem"));
+        atracao.setAtracao_imagem(resultado.getString("atracao_imagem"));
         return atracao;
 	}
 

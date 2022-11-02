@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.annotate.JacksonAnnotation;
 import org.codehaus.jackson.map.ObjectMapper;
 
 public class Local {
@@ -11,7 +12,8 @@ public class Local {
 	private String nome;
 	private String status;
 	private Float valor;
-	private String urlImg;
+	// private String urlImg;
+	private String local_imagem;
 	private int id_empresa;
 	
 	public int getId_empresa() {
@@ -70,12 +72,12 @@ public class Local {
 	public void setValor(Float valor) {
 		this.valor = valor;
 	}
-	public String getUrlImg() {
-		return urlImg;
-	}
-	public void setUrlImg(String urlImg) {
-		this.urlImg = urlImg;
-	}
+	// public String getUrlImg() {
+	// 	return urlImg;
+	// }
+	// public void setUrlImg(String urlImg) {
+	// 	this.urlImg = urlImg;
+	// }
 	
 	@Override
 	public String toString() {

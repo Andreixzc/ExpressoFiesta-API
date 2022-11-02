@@ -125,7 +125,7 @@ public class EmpresaDao extends DAO {
 				atracao.setId(resultado.getInt("id"));
 				atracao.setNome(resultado.getString("nome"));
 				atracao.setValor(resultado.getFloat("valor"));
-				atracao.setUrlImg(resultado.getString("atracao_imagem"));
+				atracao.setAtracao_imagem(resultado.getString("atracao_imagem"));
 				atracao.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(atracao);
 			}
@@ -150,7 +150,7 @@ public class EmpresaDao extends DAO {
 				local.setNome(resultado.getString("nome"));
 				local.setStatus(resultado.getString("status"));
 				local.setValor(resultado.getFloat("valor"));
-				local.setUrlImg(resultado.getString("local_imagem"));
+				local.setLocal_imagem(resultado.getString("local_imagem"));
 				local.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(local);
 			}

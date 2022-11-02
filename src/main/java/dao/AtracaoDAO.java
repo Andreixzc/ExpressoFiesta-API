@@ -29,7 +29,7 @@ public class AtracaoDAO extends DAO {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.setString(1, atracao.getNome());
 			st.setFloat(2, atracao.getValor());
-			st.setString(3, atracao.getUrlImg());
+			st.setString(3, atracao.getAtracao_imagem());
 			st.setInt(4, atracao.getId_empresa());
 			st.executeUpdate();
 			st.close();
@@ -46,7 +46,7 @@ public class AtracaoDAO extends DAO {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.setString(1, atracao.getNome());
 			st.setFloat(2, atracao.getValor());
-			st.setString(3, atracao.getUrlImg());
+			st.setString(3, atracao.getAtracao_imagem());
 			st.setInt(4, atracao.getId_empresa());
 			st.setInt(5, atracao.getId());
 			st.close();
@@ -83,7 +83,7 @@ public class AtracaoDAO extends DAO {
 				atracao.setId(resultado.getInt("id"));
 				atracao.setNome(resultado.getString("nome"));
 				atracao.setValor(resultado.getFloat("valor"));
-				atracao.setUrlImg(resultado.getString("atracao_imagem"));
+				atracao.setAtracao_imagem(resultado.getString("atracao_imagem"));
 				atracao.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(atracao);
 			}
@@ -107,7 +107,7 @@ public class AtracaoDAO extends DAO {
 			atracao.setId(resultado.getInt("id"));
 			atracao.setNome(resultado.getString("nome"));
 			atracao.setValor(resultado.getFloat("valor"));
-			atracao.setUrlImg(resultado.getString("atracao_imagem"));
+			atracao.setAtracao_imagem(resultado.getString("atracao_imagem"));
 			atracao.setId_empresa(resultado.getInt("id_empresa"));
 			}
 			return atracao;

@@ -28,7 +28,7 @@ public class LocalDAO extends DAO {
 			st.setString(2, local.getNome());
 			st.setString(3, local.getStatus());
 			st.setFloat(4, local.getValor());
-			st.setString(5, local.getUrlImg());
+			st.setString(5, local.getLocal_imagem());
 			st.setInt(6, local.getId_empresa());
 			st.executeUpdate();
 			st.close();
@@ -48,7 +48,7 @@ public class LocalDAO extends DAO {
 			st.setString(2, local.getNome());
 			st.setString(3, local.getStatus());
 			st.setFloat(4, local.getValor());
-			st.setString(5, local.getUrlImg());
+			st.setString(5, local.getLocal_imagem());
 			st.setInt(6, local.getId_empresa());
 			st.setInt(7, local.getId());
 			st.executeUpdate();
@@ -89,7 +89,7 @@ public class LocalDAO extends DAO {
 				local.setNome(resultado.getString("nome"));
 				local.setStatus(resultado.getString("status"));
 				local.setValor(resultado.getFloat("valor"));
-				local.setUrlImg(resultado.getString("local_imagem"));
+				local.setLocal_imagem(resultado.getString("local_imagem"));
 				local.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(local);
 			}
@@ -112,7 +112,7 @@ public class LocalDAO extends DAO {
 			local.setNome(resultado.getString("nome"));
 			local.setStatus(resultado.getString("status"));
 			local.setValor(resultado.getFloat("valor"));
-			local.setUrlImg(resultado.getString("local_imagem"));
+			local.setLocal_imagem(resultado.getString("local_imagem"));
 			local.setId_empresa(resultado.getInt("id_empresa"));
 			}
 			return local;
