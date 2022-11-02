@@ -10,7 +10,15 @@ public class Alimento {
 	private String nome;
 	private int quantidade;
 	private float valor;
-	private String urlImg;
+	// private String urlImg;
+	private String imagem_alimento;
+	public String getImagem_alimento() {
+		return imagem_alimento;
+	}
+	public void setImagem_alimento(String imagem_alimento) {
+		this.imagem_alimento = imagem_alimento;
+	}
+
 	private int id_empresa;
 	
 	public Alimento() {
@@ -49,12 +57,12 @@ public class Alimento {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	public String getUrlImg() {
-		return urlImg;
-	}
-	public void setUrlImg(String urlImg) {
-		this.urlImg = urlImg;
-	}
+	// public String getUrlImg() {
+	// 	return urlImg;
+	// }
+	// public void setUrlImg(String urlImg) {
+	// 	this.urlImg = urlImg;
+	// }
 	public int getId_empresa() {
 		return id_empresa;
 	}
@@ -68,6 +76,7 @@ public class Alimento {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 		  String json = mapper.writeValueAsString(this);
+		  System.out.println(json);
 		  return json;
 		} catch (JsonProcessingException e) {
 		   e.printStackTrace();

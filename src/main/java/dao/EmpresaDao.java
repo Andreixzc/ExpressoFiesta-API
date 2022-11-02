@@ -103,7 +103,7 @@ public class EmpresaDao extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
-				alimento.setUrlImg(resultado.getString("imagem_alimento"));
+				alimento.setImagem_alimento(resultado.getString("imagem_alimento"));
 				alimento.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(alimento);
 			}

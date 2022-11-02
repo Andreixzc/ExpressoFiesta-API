@@ -109,7 +109,7 @@ public class PedidoDAO extends DAO {
             PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO);
             resultado = stAtracao.executeQuery();
             while (resultado.next()) {
-            	//Instancio os pedidos pegando suas respectivas atracoes pelo id e adicionando ao arraylist de atração do model pedido
+            	//Instancio os pedidos pegando suas respectivas atracoes pelo id e adicionando ao arraylist de atraï¿½ï¿½o do model pedido
 				Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
                 pedido.getAtracoes().add(criarAtracao(resultado));
             }
@@ -183,7 +183,7 @@ public class PedidoDAO extends DAO {
         alimento.setNome(resultado.getString("nome"));
         alimento.setValor(resultado.getFloat("valor"));
         alimento.setQuantidade(resultado.getInt("quantidade"));
-        alimento.setUrlImg(resultado.getString("imagem_alimento"));
+        alimento.setImagem_alimento(resultado.getString("imagem_alimento"));
         int quantidade = resultado.getInt("pedido_alimento_quantidade");
         return new AlimentoQuantidade(alimento, quantidade);
     }
