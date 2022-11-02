@@ -28,7 +28,7 @@ public class AlimentoDAO extends DAO {
 			st.setString(1, alimento.getNome());
 			st.setInt(2, alimento.getQuantidade());
 			st.setFloat(3, alimento.getValor());
-			st.setString(4, alimento.getUrlImg());
+			st.setString(4, alimento.getImagem_alimento());
 			st.setInt(5, alimento.getId_empresa());
 			st.executeUpdate();
 			st.close();
@@ -48,7 +48,7 @@ public class AlimentoDAO extends DAO {
 			st.setString(1, alimento.getNome());
 			st.setInt(2, alimento.getQuantidade());
 			st.setFloat(3, alimento.getValor());
-			st.setString(4, alimento.getUrlImg());
+			st.setString(4, alimento.getImagem_alimento());
 			st.setInt(5, alimento.getId_empresa());
 			st.setInt(6, alimento.getId());
 			st.executeUpdate();
@@ -88,7 +88,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
-				alimento.setUrlImg(resultado.getString("imagem_alimento"));
+				alimento.setImagem_alimento(resultado.getString("imagem_alimento"));
 				alimento.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(alimento);
 			}
@@ -113,7 +113,7 @@ public class AlimentoDAO extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
-				alimento.setUrlImg(resultado.getString("imagem_alimento"));
+				alimento.setImagem_alimento(resultado.getString("imagem_alimento"));
 				alimento.setId_empresa(resultado.getInt("id_empresa"));
 			}
 			
