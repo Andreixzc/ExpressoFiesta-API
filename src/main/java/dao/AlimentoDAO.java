@@ -32,6 +32,7 @@ public class AlimentoDAO extends DAO {
 			st.setInt(5, alimento.getId_empresa());
 			st.executeUpdate();
 			st.close();
+			System.out.println(sql);
 			status = true;
 		} catch (SQLException u) {
 			throw new RuntimeException(u);
