@@ -69,7 +69,8 @@ public class UsuarioService {
 		ObjectMapper mapper = new ObjectMapper();
 		Usuario usuario = mapper.readValue(body, Usuario.class);
 		if (usuarioDAO.insert(usuario)) {
-			response.status(200);
+			response.status(201);
+			System.out.println(usuario);
 			return usuario;
 		}else {
 			response.status(404);
