@@ -70,7 +70,7 @@ public class UsuarioService {
 		Usuario usuario = mapper.readValue(body, Usuario.class);
 		if (usuarioDAO.insert(usuario)) {
 			response.status(201);
-			System.out.println(usuario);
+			System.out.println(usuario.toString());
 			return usuario;
 		}else {
 			response.status(404);
