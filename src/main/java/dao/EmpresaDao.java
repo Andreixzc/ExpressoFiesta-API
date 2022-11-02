@@ -103,7 +103,7 @@ public class EmpresaDao extends DAO {
 				alimento.setNome(resultado.getString("nome"));
 				alimento.setQuantidade(resultado.getInt("quantidade"));
 				alimento.setValor(resultado.getFloat("valor"));
-				alimento.setImagem_alimento(resultado.getString("imagem_alimento"));
+				alimento.setUrlImg(resultado.getString("imagem_alimento"));
 				alimento.setId_empresa(resultado.getInt("id_empresa"));
 				retorno.add(alimento);
 			}
@@ -186,7 +186,7 @@ public class EmpresaDao extends DAO {
 
 	public Empresa buscarPorUsuario(int id) {
 		Empresa empresa = new Empresa();
-		String sql = "select * from empresa where id_usuario ="+id;
+		String sql = "SELECT * FROM empresa where id = " + id;
 		try {
 			PreparedStatement st = conexao.prepareStatement(sql);
 			ResultSet resultado = st.executeQuery();
