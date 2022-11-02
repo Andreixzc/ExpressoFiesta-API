@@ -22,17 +22,21 @@ public class Local {
 	public void setId_empresa(int id_empresa) {
 		this.id_empresa = id_empresa;
 	}
-	public Local(int id, String endereco, String nome, String status, Float valor) {
+
+	public Local() {
+		
+	}
+
+	public Local(int id, String endereco, String nome, String status, Float valor,
+			String local_imagem, int id_empresa) {
 		this.id = id;
 		this.endereco = endereco;
 		this.nome = nome;
 		this.status = status;
 		this.valor = valor;
+		this.local_imagem = local_imagem;
+		this.id_empresa = id_empresa;
 	}
-	public Local() {
-		
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -92,6 +96,12 @@ public class Local {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	public String getLocal_imagem() {
+		return local_imagem;
+	}
+	public void setLocal_imagem(String local_imagem) {
+		this.local_imagem = local_imagem;
 	}
 	
 }

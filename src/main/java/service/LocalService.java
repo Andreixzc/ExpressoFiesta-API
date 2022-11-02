@@ -1,7 +1,10 @@
 package service;
 
+import java.io.IOException;
 import java.util.List;
-
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import dao.LocalDAO;
 import model.Local;
 import spark.Request;
@@ -47,23 +50,19 @@ public class LocalService {
         return localDAO.listar();
     }
 
-    public Local insert(Request request, Response response) {
+    public Local insert(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
         setReponseHeaders(response);
 
-        String endereco = request.queryParams("endereco");
-        String nome = request.queryParams("nome");
-        String status = request.queryParams("status");
-        float valor = Float.parseFloat(request.queryParams("valor"));
-
-        Local local = new Local(-1, endereco, nome, status, valor);
-
-        if (localDAO.insert(local)) {
-            response.status(201);
-            return local;
-        } else {
-            response.status(404);
-            return null;
-        }
+        String body = request.body();
+		ObjectMapper mapper = new ObjectMapper();
+        Local local = mapper.readValue(body, Local.class);
+		if (localDAO.insert(local)) {
+			response.status(201); // 201 Created
+			return local;
+		} else {
+			response.status(404); // 404 Not found
+			return null;
+		}
     }
 
     public Local update(Request request, Response response) {

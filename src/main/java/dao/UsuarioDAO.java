@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.postgresql.core.Tuple;
-
 import model.Usuario;
 import service.Criptografar;
 
