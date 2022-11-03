@@ -65,6 +65,7 @@ public class AtracaoDAO extends DAO {
 		try {
 			String sql = "DELETE from atracao where id = "+id;
 			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
 			st.close();
 			status = true;
 		} catch (SQLException u) {
