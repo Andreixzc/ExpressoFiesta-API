@@ -13,6 +13,7 @@ public class Local {
 	private String status;
 	private Float valor;
 	// private String urlImg;
+	//sd
 	private String local_imagem;
 	private int id_empresa;
 	
