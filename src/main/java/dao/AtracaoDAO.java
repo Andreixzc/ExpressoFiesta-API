@@ -49,6 +49,7 @@ public class AtracaoDAO extends DAO {
 			st.setString(3, atracao.getAtracao_imagem());
 			st.setInt(4, atracao.getId_empresa());
 			st.setInt(5, atracao.getId());
+			st.executeUpdate();
 			st.close();
 			status = true;
 			
