@@ -83,7 +83,7 @@ public class AtracaoService {
 			ObjectMapper mapper = new ObjectMapper();
 			Atracao atracao2 = mapper.readValue(body, Atracao.class);
 			
-			atracaoDAO.update(atracao);
+			atracaoDAO.update(atracao2);
 			response.status(200);
 			
 			return atracao;

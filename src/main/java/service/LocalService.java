@@ -65,14 +65,14 @@ public class LocalService {
 		}
     }
 
-    public Local update(Request request, Response response) {
+    public Local update(Request request, Response response) throws JsonParseException, JsonMappingException, IOException {
         setReponseHeaders(response);
         Local local = buscarPorId(request);
         if (local != null) {
-            local.setEndereco(request.queryParams("endereco"));
-            local.setNome(request.queryParams("nome"));
-            local.setStatus(request.queryParams("status"));
-            local.setValor(Float.parseFloat(request.queryParams("valor")));
+            String body = request.body();
+			ObjectMapper mapper = new ObjectMapper();
+            Local local2 = mapper.readValue(body, Local.class);
+			localDAO.update(local2);
             response.status(200);
             return local;
         } else {
