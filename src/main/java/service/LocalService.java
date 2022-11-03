@@ -83,6 +83,7 @@ public class LocalService {
     }
 
     public String delete(Request request, Response response) {
+        setReponseHeaders(response);
         Local local = buscarPorId(request);
 
         if (local != null) {

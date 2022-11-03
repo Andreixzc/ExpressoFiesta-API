@@ -93,6 +93,7 @@ public class AtracaoService {
 		}
 	}
 	public String delete(Request request, Response response) {
+		setReponseHeaders(response);
 		Atracao atracao = buscarPorId(request);
 
 		if (atracao != null) {

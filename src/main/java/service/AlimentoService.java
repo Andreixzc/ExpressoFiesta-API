@@ -95,7 +95,9 @@ public class AlimentoService {
 	}
 
 	public String delete(Request request, Response response) {
+		setReponseHeaders(response);
 		Alimento alimento = buscarPorId(request);
+		
 
 		if (alimento != null) {
 			alimentoDAO.delete(alimento.getId());

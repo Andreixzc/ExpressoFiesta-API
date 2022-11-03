@@ -112,6 +112,7 @@ public class EmpresaService {
     }
 
     public String delete(Request request, Response response) {
+        setReponseHeaders(response);
         Empresa empresa = buscarPorId(request);
 
         if (empresa != null) {
