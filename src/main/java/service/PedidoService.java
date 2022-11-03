@@ -3,6 +3,7 @@ package service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -49,11 +50,20 @@ public class PedidoService {
 			return null;
 		}
 	}
+
+	public List <Pedido> getPedidosByUser(Request request, Response response){
+		setReponseHeaders(response);
+		int id = Integer.parseInt(request.params(":id"));
+		return pedidoDAO.listarPorIDUsuario(id);
+	}
 	
 	public List<Pedido> getAll(Request request, Response response) {
 		setReponseHeaders(response);
 		return pedidoDAO.listar();
 	}
+
+	//retonar um vetor de pedido do usuario X;
+
 
 	public Pedido insert(Request request,Response response) {
 		setReponseHeaders(response);
@@ -141,7 +151,7 @@ public class PedidoService {
 		if (pedido != null) {
 			pedidoDAO.delete(pedido.getId());
 			response.status(200);
-			return "Pedidi de id " + pedido.getId() + " excluido!";
+			return "Pedido de id " + pedido.getId() + " excluido!";
 		}else {
 			response.status(404);
 			return "Pedido nao encontrado";

@@ -70,6 +70,8 @@ public class Aplicacao {
 
         get("/pedido/:id", (request, response) -> pedidoService.get(request, response));
 
+        get("/pedido/usuario/:id", (request, response) -> pedidoService.getPedidosByUser(request, response));
+
         post("/pedido/insert", (request, response) -> pedidoService.insert(request, response));
 
         post("/pedido/update/:id", (request, response) -> pedidoService.update(request, response));

@@ -95,6 +95,43 @@ public class PedidoDAO extends DAO {
 		return status;
 	}
 
+	public List<Pedido> listarPorIDUsuario(int id) {
+		List<Pedido> retorno = new ArrayList<>();
+		try {
+			String sql = "Select * from pedido where usuario_id = "+id;
+			PreparedStatement st = conexao.prepareStatement(sql);
+			ResultSet resultado = st.executeQuery();
+			while (resultado.next()) {
+				Pedido pedido = criarPedido(resultado);//Funcao que cria um pedido
+				retorno.add(pedido);//Adiciono o pedido no arraylist de pedido
+			}
+			st.close();//Preenche os dados do pedido.
+
+            PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO);
+            resultado = stAtracao.executeQuery();
+            while (resultado.next()) {
+            	//Instancio os pedidos pegando suas respectivas atracoes pelo id e adicionando ao arraylist de atra��o do model pedido
+				Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
+                pedido.getAtracoes().add(criarAtracao(resultado));
+            }
+            stAtracao.close();
+
+            PreparedStatement stAlimento = conexao.prepareStatement(SELECT_QUERY_ALIMENTO);
+            resultado = stAlimento.executeQuery();
+            while (resultado.next()) {
+                Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));
+                pedido.getAlimentosQuantidade().add(criarAlimentoQuantidade(resultado));
+            }
+            stAlimento.close();
+
+		} catch (Exception e) {
+			System.out.println("Erro ao listar: " + e);
+		}
+		return retorno;
+	}
+
+
+
 	public List<Pedido> listar() {
 		List<Pedido> retorno = new ArrayList<>();
 		try {
