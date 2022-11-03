@@ -44,7 +44,7 @@ public class Aplicacao {
 
         post("/alimento/update/:id", (request, response) -> alimentoService.update(request, response));
 
-        delete("/alimento/delete/:id", (request, response) -> alimentoService.delete(request, response));
+        post("/alimento/delete/:id", (request, response) -> alimentoService.delete(request, response));
 ///////////////////////////////////////////////////////AtracaoService///////////////////////////////////////////////////
         get("/atracao/list", (request, response) -> atracaoService.getAll(request, response));
 
