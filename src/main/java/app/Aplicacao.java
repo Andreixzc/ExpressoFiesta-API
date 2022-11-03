@@ -54,7 +54,7 @@ public class Aplicacao {
 
         post("/atracao/update/:id", (request, response) -> atracaoService.update(request, response));
 
-        delete("/atracao/delete/:id", (request, response) -> atracaoService.delete(request, response));
+        post("/atracao/delete/:id", (request, response) -> atracaoService.delete(request, response));
 ///////////////////////////////////////////////////////LocalService///////////////////////////////////////////////////
         get("/local/list", (request, response) -> localService.getAll(request, response));
 
@@ -64,7 +64,7 @@ public class Aplicacao {
 
         post("/local/update/:id", (request, response) -> localService.update(request, response));
 
-        delete("/local/delete/:id", (request, response) -> localService.delete(request, response));
+        post("/local/delete/:id", (request, response) -> localService.delete(request, response));
 ///////////////////////////////////////////////////////PedidoService///////////////////////////////////////////////////
         get("/pedido/list", (request, response) -> pedidoService.getAll(request, response));
 
@@ -74,7 +74,7 @@ public class Aplicacao {
 
         post("/pedido/update/:id", (request, response) -> pedidoService.update(request, response));
 
-        delete("/pedido/delete/:id", (request, response) -> pedidoService.delete(request, response));
+        post("/pedido/delete/:id", (request, response) -> pedidoService.delete(request, response));
 ///////////////////////////////////////////////////////UsuarioService///////////////////////////////////////////////////
         get("/usuario/list", (request, response) -> usuarioService.getAll(request, response));
 
@@ -84,7 +84,7 @@ public class Aplicacao {
 
         post("/usuario/update", (request, response) -> usuarioService.update(request, response));
 
-        delete("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
+        post("/usuario/delete/:id", (request, response) -> usuarioService.delete(request, response));
 
         post("/usuario/login", (request, response) -> usuarioService.validaLogin(request, response));
 /////////////////////////////////////////////////////Empresa///////////////////////////////////////////
@@ -97,7 +97,7 @@ public class Aplicacao {
 
         post("/empresa/update", (request, response) -> empresaService.update(request, response));
 
-        delete("/empresa/delete/:id", (request, response) -> empresaService.delete(request, response));
+        post("/empresa/delete/:id", (request, response) -> empresaService.delete(request, response));
 
         get("/empresa/alimentoList/:id", (request, response) -> empresaService.getAlimento(request, response));
 
