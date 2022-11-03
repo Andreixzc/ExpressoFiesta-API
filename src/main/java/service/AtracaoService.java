@@ -76,21 +76,19 @@ public class AtracaoService {
 		setReponseHeaders(response);
 		Atracao atracao = buscarPorId(request);
 
-		if (atracao != null) {
-//			atracao.setNome(request.queryParams("nome"));
-//			atracao.setValor(Float.parseFloat(request.queryParams("valor")));
-			String body = request.body();
+        if (atracao != null) {
+            String body = request.body();
 			ObjectMapper mapper = new ObjectMapper();
 			Atracao atracao2 = mapper.readValue(body, Atracao.class);
-			
 			atracaoDAO.update(atracao2);
-			response.status(200);
-			
-			return atracao;
-		} else {
-			response.status(404);
-			return null;
-		}
+			System.out.println("PRINTANDO NOVA ATRACAO:");
+			System.out.println(atracao2.toString());
+            response.status(200);
+            return atracao;
+        } else {
+            response.status(404);
+            return null;
+        }
 	}
 	public String delete(Request request, Response response) {
 		setReponseHeaders(response);
