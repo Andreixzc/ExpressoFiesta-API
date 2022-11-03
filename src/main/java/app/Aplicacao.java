@@ -33,7 +33,6 @@ public class Aplicacao {
 
         
         port(getHerokuAssignedPort());
-        CorsFilter.apply();
         
 ///////////////////////////////////////////////////////AlimentoService////////////////////////////////////////
 
