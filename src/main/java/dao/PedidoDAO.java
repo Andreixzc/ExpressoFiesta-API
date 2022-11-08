@@ -35,12 +35,12 @@ public class PedidoDAO extends DAO {
 		   private final String SELECT_QUERY_ATRACAO2 = "SELECT ATRACAO.*, PEDIDO_ATRACAO.pedido_id "
 		   + "FROM PEDIDO "
 		   + "INNER JOIN PEDIDO_ATRACAO ON (PEDIDO.ID = PEDIDO_ATRACAO.PEDIDO_ID) "
-		   + "INNER JOIN ATRACAO ON (ATRACAO.ID = PEDIDO_ATRACAO.ATRACAO_ID)";
+		   + "INNER JOIN ATRACAO ON (ATRACAO.ID = PEDIDO_ATRACAO.ATRACAO_ID) where pedido.usuario_id = ";
 
    private final String SELECT_QUERY_ALIMENTO2 = "SELECT ALIMENTO.*, PEDIDO_ALIMENTO.pedido_id, PEDIDO_ALIMENTO.quantidade pedido_alimento_quantidade"
 		  + " FROM PEDIDO "
 		  + " INNER JOIN PEDIDO_ALIMENTO ON (PEDIDO.ID = PEDIDO_ALIMENTO.PEDIDO_ID) "
-		  + " INNER JOIN ALIMENTO ON (ALIMENTO.ID = PEDIDO_ALIMENTO.ALIMENTO_ID) " ;	   
+		  + " INNER JOIN ALIMENTO ON (ALIMENTO.ID = PEDIDO_ALIMENTO.ALIMENTO_ID) where pedido.usuario_id = " ;	   
 
 	public PedidoDAO() {
 		super();
@@ -118,7 +118,7 @@ public class PedidoDAO extends DAO {
 			}
 			st.close();//Preenche os dados do pedido.
 
-            PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO);
+            PreparedStatement stAtracao = conexao.prepareStatement(SELECT_QUERY_ATRACAO2+id);
             resultado = stAtracao.executeQuery();
             while (resultado.next()) {
             	//Instancio os pedidos pegando suas respectivas atracoes pelo id e adicionando ao arraylist de atra��o do model pedido
@@ -127,7 +127,7 @@ public class PedidoDAO extends DAO {
             }
             stAtracao.close();
 
-            PreparedStatement stAlimento = conexao.prepareStatement(SELECT_QUERY_ALIMENTO);
+            PreparedStatement stAlimento = conexao.prepareStatement(SELECT_QUERY_ALIMENTO2+id);
             resultado = stAlimento.executeQuery();
             while (resultado.next()) {
                 Pedido pedido = getPedidoById(retorno, resultado.getInt("pedido_id"));

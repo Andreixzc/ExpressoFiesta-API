@@ -68,6 +68,8 @@ public class Aplicacao {
 ///////////////////////////////////////////////////////PedidoService///////////////////////////////////////////////////
         get("/pedido/list", (request, response) -> pedidoService.getAll(request, response));
 
+        get("/pedido/list/:id", (request, response) -> pedidoService.getPedidosByUser(request, response));
+
         get("/pedido/:id", (request, response) -> pedidoService.get(request, response));
 
         get("/pedido/usuario/:id", (request, response) -> pedidoService.getPedidosByUser(request, response));
