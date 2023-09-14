@@ -1,0 +1,46 @@
+{
+  "id": 1,
+  "data_pedido": {
+    "year": 2022,
+    "month": "MARCH",
+    "monthValue": 3,
+    "dayOfMonth": 2,
+    "chronology": {
+      "id": "ISO",
+      "calendarType": "iso8601"
+    },
+    "dayOfWeek": "WEDNESDAY",
+    "leapYear": false,
+    "dayOfYear": 61,
+    "era": "CE"
+  },
+  "total": 100.0,
+  "local_id": 1,
+  "usuario_id": 1,
+  "atracoes": [
+    {
+      "id": 1,
+      "nome": "Palhaço Pimpão",
+      "valor": 68.58,
+      "urlImg": "https://st.depositphotos.com/1026550/4167/i/450/depositphotos_41679805-stock-photo-dj-silhouette.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "MC Poze do Rodo",
+      "valor": 16.22,
+      "urlImg": "https://st.depositphotos.com/1026550/4167/i/450/depositphotos_41679805-stock-photo-dj-silhouette.jpg"
+    }
+  ],
+  "alimentosQuantidade": [
+    {
+      "alimento": {
+        "id": 2,
+        "nome": "Munchies Honey Sweet Trail Mix",
+        "quantidade": 71,
+        "valor": 43.81,
+        "urlImg": "https://media-cdn.tripadvisor.com/media/photo-s/10/d0/52/39/salgadinho-de-festa-betim.jpg"
+      },
+      "quantidade": 6
+    }
+  ]
+}
