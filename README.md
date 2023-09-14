@@ -1,5 +1,5 @@
 <h1 align="center">
-  Interdisciplinary Work II: Databases and ISI (4)
+  Interdisciplinary Work II
 </h1>
 
 
